@@ -1,3 +1,8 @@
+/* 
+ * The current program does a simple copy from one file to another.
+ * TODO Complete the program to copy holes as well.
+ */
+
 #include <sys/stat.h>
 #include <fcntl.h>
 
@@ -29,13 +34,6 @@ main (int argc, char *argv[])
   if ((tgtFd = open(argv[argc-1], tgtOpenFlags, tgtPerms)) == -1)
 	errExit("open target");
 
-  /* 
-	(Page 66)
-	Printing system data type values:
-	We make one exception to the technique of Printing system data type values.
-	Because the off_t data type is the size of long long in some compilation 
-	environments, we cast off_t values to this type and use the %lld specifier.
-	*/
   /*
 	//The following call retrieves the current location of the file offset without
 	//changing it
@@ -51,11 +49,20 @@ main (int argc, char *argv[])
   // get current offset
   if ((tgtCurOffset = lseek(srcFd, 0, SEEK_CUR)) == -1)
 	errExit("seek curr");
+  /* 
+	(Page 66)
+	Printing system data type values:
+	We make one exception to the technique of Printing system data type values.
+	Because the off_t data type is the size of long long in some compilation 
+	environments, we cast off_t values to this type and use the %lld specifier.
+	*/
   printf("tgtCurOffset: %lld\n", (long long) tgtCurOffset);
+
   // get file size
   if ((tgtEnd = lseek(srcFd, 0, SEEK_END))== -1)
 	errExit("seek end");
   printf("tgtEnd: %lld\n", (long long) tgtEnd);
+
   // restore offset
   if ((tgtCurOffset = lseek(srcFd, tgtCurOffset - tgtEnd, SEEK_END)) == -1)
 	errExit("seek restore curr");
@@ -92,6 +99,29 @@ main (int argc, char *argv[])
 	  fatal("couldn't write whole buffer");
   if (numRead == -1)
 	errExit("read");
+
+  /* 
+   * It is usually good practice to close unneeded file descriptors explicitly, since this
+   * makes our code more readable and reliable in the face of subsequent modifica-
+   * tions. Furthermore, file descriptors are a consumable resource, so failure to close a
+   * file descriptor could result in a process running out of descriptors. This is a partic-
+   * ularly important issue when writing long-lived programs that deal with multiple
+   * files, such as shells or network servers.
+   */
+
+  /*
+   * Just like every other system call, a call to close() should be bracketed with error-
+   * checking code.
+   *
+   * This catches errors such as attempting to close an unopened file descriptor or close
+   * the same file descriptor twice, and catches error conditions that a specific file sys-
+   * tem may diagnose during a close operation.
+   */
+  // close fds
+  if (close(srcFd) == -1)
+	errExit("close srcFd");
+  if (close(tgtFd) == -1)
+	errExit("close tgtFd");
 
   exit(EXIT_SUCCESS);
 }
