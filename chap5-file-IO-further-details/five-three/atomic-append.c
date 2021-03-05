@@ -41,7 +41,7 @@ main(int argc, char *argv[])
    * See strcmp() for comparing to strings(or character) the right way.
    *
    */
-  openFlags = O_RDWR | O_CREAT | ((*argv[argc-1]) == 'x' ? O_APPEND : 0);
+  openFlags = O_RDWR | O_CREAT | ((*argv[argc-1]) == 'x' ? 0 : O_APPEND);
   printf("openFlags: %d\n", openFlags);
   printf("addtional argument value: %c\n", *argv[argc-1]);
 
