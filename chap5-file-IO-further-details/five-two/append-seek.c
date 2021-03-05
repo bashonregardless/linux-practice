@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <tlpi_hdr.h>
 
+//#define STR "This is probably wrong. You are trying to write a string directly"
 int
 main(int argc, char *argv[])
 {
