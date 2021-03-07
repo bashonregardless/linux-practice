@@ -73,23 +73,23 @@ main(int argc, char *argv[])
   if ((numRead = read(STDIN_FILENO, buffer, MAX_READ)) == -1)
 	errExit("read");
 
-  /*(Page 66)
-	Printing system data type values:
+  /* (Page 66)
+	 Printing system data type values:
 
-	When printing values of one of the numeric system data types shown in Table 3-1
-	(e.g., pid_t and uid_t), we must be careful not to include a representation depen-
-	dency in the printf() call. A representation dependency can occur because C’s argu-
-	ment promotion rules convert values of type short to int, but leave values of type int
-	and long unchanged. This means that, depending on the definition of the system
-	data type, either an int or a long is passed in the printf() call. However, because
-	printf() has no way to determine the types of its arguments at run time, the caller
-	must explicitly provide this information using the %d or %ld format specifier. The
-	problem is that simply coding one of these specifiers within the printf() call creates
-	an implementation dependency.
+	 When printing values of one of the numeric system data types shown in Table 3-1
+	 (e.g., pid_t and uid_t), we must be careful not to include a representation depen-
+	 dency in the printf() call. A representation dependency can occur because C’s argu-
+	 ment promotion rules convert values of type short to int, but leave values of type int
+	 and long unchanged. This means that, depending on the definition of the system
+	 data type, either an int or a long is passed in the printf() call. However, because
+	 printf() has no way to determine the types of its arguments at run time, the caller
+	 must explicitly provide this information using the %d or %ld format specifier. The
+	 problem is that simply coding one of these specifiers within the printf() call creates
+	 an implementation dependency.
 
-	The usual solution is to use the %ld specifier and
-	always cast the corresponding value to long
-	*/
+	 The usual solution is to use the %ld specifier and always cast the corresponding 
+	 value to long.
+	 */
   printf("numRead: %ld\n", (long) numRead);
   printf("fileFd: %ld\n", (long) fileFd);
 

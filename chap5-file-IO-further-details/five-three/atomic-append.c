@@ -34,12 +34,17 @@ main(int argc, char *argv[])
   /*
    * CAUTION!
    *
-   * `*argv[argc-1] == 'x'` is wrong because
-   * *argv[argc-1] will give first character of argument string
+   * In code: `*argv[argc-1] == 'x'`,
+   * `*argv[argc-1]` will give first character of string
    * at position argc-1 in array of pointers argv.
-   *
+
+   * Comparing two strings(or character):
    * See strcmp() for comparing to strings(or character) the right way.
    *
+   * VERIFY?
+   *
+   * Is comparison of the form
+   * `(*argv[argc-1]) == 'x'` correct?
    */
   openFlags = O_RDWR | O_CREAT | ((*argv[argc-1]) == 'x' ? 0 : O_APPEND);
   printf("openFlags: %d\n", openFlags);
@@ -47,6 +52,7 @@ main(int argc, char *argv[])
 
   /*
    * CAUTION!
+   *
    * If file is opened with only perm flag S_IWUSR, then trying
    * to access it will throw 
    * [EACCESS Permission denied] open
