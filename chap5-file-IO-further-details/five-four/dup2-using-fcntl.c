@@ -1,7 +1,7 @@
 #include <fcntl.h>
 
 #include <limits.h>
-#include <error.h>
+#include <errno.h>
 
 #include <tlpi_hdr.h>
 
@@ -13,12 +13,12 @@
 long 
 getNum(char *nptr, int base)
 {
-  int errorno;
+  int errno;
   long val;
   char *endptr, *str;
 
   str = nptr;
-  errorno = 0; /* to distinguish success/failure after call */
+  errno = 0; /* to distinguish success/failure after call */
 
   val = strtol(str, &endptr, base);
 
@@ -32,7 +32,7 @@ getNum(char *nptr, int base)
    * strtoll() (with LLONG_MIN and LLONG_MAX instead of LONG_MIN
    * and LONG_MAX).
    */
-  if ((errorno == ERANGE && (val == LONG_MIN || val == LONG_MAX)) ||
+  if ((errno == ERANGE && (val == LONG_MIN || val == LONG_MAX)) ||
 	 /* The implementation may also set errno to EINVAL in case
 	  * no conversion was performed (no digits seen, and 0 returned)
 	  */
@@ -75,17 +75,75 @@ main (int argc, char **argv)
   if (argc < 3 || strcmp(argv[1], "--help") == 0)
 	usageErr("%s oldfd newfd\n", argv[0]);
   
-  int oldFd, newFd;
-  //long val;
+  int oldFdVal, oldFd, newFdVal, newFd;
 
   /* long is a signed interger type.
    * Cast it to int because in dup command 
    * fd arg has type int.
    * 
-   * dup2(int oldfd, int newfd) 
+   * `
+   * #include <unstid.h>
+   * dup2(int oldfd, int newfd)
+   * `
+   * Returns (new) file descriptor on success, or -1 on error.
    */
-  oldFd = (int) getNum(argv[1], 10);
+
   /* parse command line argument string and convert it
    * to number(long). The result is casted to integer.
    */
-}
+  oldFdVal = (int) getNum(argv[1], 10);
+  newFdVal = (int) getNum(argv[2], 10);
+
+  /* The dup2() system call makes a duplicate of the file descriptor
+   * given in oldfd using the descriptor number supplied in newfd. 
+   * If the file descriptor specified in newfd is already open,
+   * dup2() closes it first.
+   * (Any error that occurs during this close is silently ignored).
+   * The closing and reuse of newfd are performed atomically, which 
+   * avoids the possibility that newfd is reused between the two 
+   * steps in a signal handler or a parallel thread that allocates
+   * a file descriptor.
+   */
+
+  /* If oldfd is not a valid file descriptor, then dup2() fails
+   * with the error EBADF and newfd is not closed. If oldfd is
+   * a valid file descriptor, and oldfd and newfd have the same 
+   * value, then dup2() does nothing - newfd is not closed, and
+   * dup2() returns the newfd as its function result.
+   */
+
+  /* A further interface that provides some extra flexibility for
+   * duplicating file descriptors is the fcntl() F_DUPFD operation:
+   * 
+   * `newfd = fcntl(oldfd, F_DUPFD, startfd);`
+   */
+
+  /* (Stackoverflow bookmarked:
+   * Q. FIXME How to check if a given file descriptor stored in a variable 
+   * is still valid?)
+   * 
+   * fcntl(fd, F_GETFD) is the canonical cheapest way to check that
+   * fd is a valid open file descriptor. If you need to batch-check
+   * a lot, using poll with a zero timeout and the events member
+   * set to 0 and checking for POLLNVAL in revents after it returns 
+   * is more efficient.
+   *
+   * With that said, the operation "check if a given resource handle 
+   * is still valid" is almost always fundamentally incorrect. After
+   * a resource handle is freed (e.g. a fd is closed), its value may 
+   * be reassigned to the next such resource you allocate. If there 
+   * are any remaining references that might be used, they will wrongly 
+   * operate on the new resource rather than the old one. Thus, the 
+   * real answer is probably: If you don't already know by the logic 
+   * of your program, you have major fundamental logic errors that need 
+   * to be fixed.
+   */
+
+  if (oldFd == newFd)
+	printf("%d already open. oldFd and newFd have same value\n");
+  exit(EXIT_SUCCESS);
+
+  close(newFd);
+  if ((newFd = fcntl(oldFd, F_DUPFD, newFd)) == -1)
+	errExit("fcntl");
+
