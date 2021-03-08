@@ -137,6 +137,8 @@ main (int argc, char **argv)
    * real answer is probably: If you don't already know by the logic 
    * of your program, you have major fundamental logic errors that need 
    * to be fixed.
+   *
+   * TODO As suggested in irssi oftc kernelnewbies: Try fstat(2)
    */
 
   if (oldFd == newFd)
