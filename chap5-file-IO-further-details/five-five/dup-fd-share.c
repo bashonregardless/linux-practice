@@ -127,6 +127,11 @@ main (int argc, char **argv)
 		if ((fileOffset = lseek(fd, offsetVal, SEEK_CUR)) == -1)
 		  errExit("lseek");
 
+		/* The return value from a successful lseek() is the new file offset. The following
+		 * call retrieves the current location of the file offset without changing it:
+		 *
+		 * `curr = lseek(fd, 0, SEEK_CUR);`
+		 */
 		printf("After changing offset of original file with lseek, value of:\n"
 			"\tfile offset is: %lld\n" 
 			"\tduplicated descriptor file offset is: %lld\n\n",
