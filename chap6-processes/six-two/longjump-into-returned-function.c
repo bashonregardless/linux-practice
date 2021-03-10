@@ -50,3 +50,17 @@ main()
 
   exit(EXIT_SUCCESS);
 }
+
+/*
+ * Output of shell command ./longjump-into-returned-function.out;
+ *
+ * This is site after initial return from setjmp() inside setJumpLoc() function
+ * This is site after initial return from setjmp() inside caller of setJumpLoc()
+ * This is site after initial return from setjmp() inside setJumpLoc() function
+ *
+ * The behaviour that above output mimics is probably:
+ * (Refer Page-135 Abusing longjmp())
+ * depending on the state of the stack, other possibilities include 
+ * infinite call-return loops and the program behaving as though it 
+ * really did return from a function that was not currently executing.
+ */
