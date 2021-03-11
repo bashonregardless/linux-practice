@@ -1,3 +1,6 @@
+# This makefile looks ovedone. If it is, find out the correct approach to
+# write makefile for small project like this one?
+
 CC = gcc
 CFLAGS = -Wall -Wextra -pedantic-errors
 INCLUDE_DIRECTORIES = ../../tlpi-book/lib/
