@@ -1,3 +1,17 @@
+/*
+ * Also run this program with command
+ *
+ * `strace command options
+ *
+ * to see the system calls used by malloc().
+ *
+ * Q. Find out when malloc employs mmap() sys call and
+ * when it employs sbrk() sys call for allocation of
+ * memory, or, if it even does employ these sys calls?
+ * 
+ * NOTE the answer to above question is key to solving
+ * question seven-two.
+ */
 #include <unistd.h>
 #include <stdlib.h>
 
@@ -18,7 +32,7 @@ main(int argc, char *argv[])
   intptr_t increment;
 
   if (argc < 3 || strcmp(argv[1], "--help") == 0)
-	usageErr("%s #blocks block-size [step [min [max]]]", argv[0]);
+	usageErr("%s #blocks block-size [step [min [max]]]\n", argv[0]);
 
   noOfBlocks =  getInt(argv[1], GN_GT_0, "num-allocs");
   if (noOfBlocks > BLK_PTR_ARR_LEN)
@@ -81,6 +95,8 @@ main(int argc, char *argv[])
 	 */
 	if (ptr[i] == NULL)
 	  errExit("malloc");
+	
+	printf("program break after call to malloc for block number %d: %10p\n", i, sbrk(0));
   }
 
   /* Q. Shouldn't using sbrk(increment) ajust program break
@@ -139,3 +155,106 @@ main(int argc, char *argv[])
 
   exit(EXIT_SUCCESS);
 }
+
+/* 
+ * Output of command 
+ *` ./free_and_sbrk.out 10 1024`
+ * 
+ * Initial program break:  0x1de9000
+ * Allocating 10*1024 bytes
+ * program break after call to malloc for block number 0:  0x1e0b000
+ * program break after call to malloc for block number 1:  0x1e0b000
+ * program break after call to malloc for block number 2:  0x1e0b000
+ * program break after call to malloc for block number 3:  0x1e0b000
+ * program break after call to malloc for block number 4:  0x1e0b000
+ * program break after call to malloc for block number 5:  0x1e0b000
+ * program break after call to malloc for block number 6:  0x1e0b000
+ * program break after call to malloc for block number 7:  0x1e0b000
+ * program break after call to malloc for block number 8:  0x1e0b000
+ * program break after call to malloc for block number 9:  0x1e0b000
+ * Program break after allocating all the blocks is  0x1e0b000
+ * Freeing blocks from 1 to 10 in steps of 1
+ * Program break after freeing blocks is  0x1e0b000
+ *
+ * Observe that
+ * program break after call to malloc for block number 0 to 9 are same.
+ * This is because
+ * malloc() doesn’t employ sbrk()
+ * to adjust the program break on each call, but instead periodically 
+ * allocates larger chunks of memory from which it passes back small 
+ * pieces to the caller.
+ *
+ */
+/*
+ * Output of command 
+ * `./free_and_sbrk.out 10 10240`
+ *
+ * Initial program break:   0x7eb000
+ * Allocating 10*10240 bytes
+ * program break after call to malloc for block number 0:   0x80d000
+ * program break after call to malloc for block number 1:   0x80d000
+ * program break after call to malloc for block number 2:   0x80d000
+ * program break after call to malloc for block number 3:   0x80d000
+ * program break after call to malloc for block number 4:   0x80d000
+ * program break after call to malloc for block number 5:   0x80d000
+ * program break after call to malloc for block number 6:   0x80d000
+ * program break after call to malloc for block number 7:   0x80d000
+ * program break after call to malloc for block number 8:   0x80d000
+ * program break after call to malloc for block number 9:   0x80d000
+ * Program break after allocating all the blocks is   0x80d000
+ * Freeing blocks from 1 to 10 in steps of 1
+ * Program break after freeing blocks is   0x80d000
+ *
+ * Observe that
+ * program break after call to malloc for block number 0 to 9 are same.
+ * This is similar to output of command
+ * `./free_and_sbrk.out 10 1024`
+ *
+ * This is because
+ * malloc() doesn’t employ sbrk()
+ * to adjust the program break on each call, but instead periodically 
+ * allocates larger chunks of memory from which it passes back small 
+ * pieces to the caller.
+ *
+ */
+/*
+ * Output of command 
+ * `./free_and_sbrk.out 10 102400`
+ *
+ * Initial program break:  0x134f000
+ * Allocating 10*102400 bytes
+ * program break after call to malloc for block number 0:  0x1371000
+ * program break after call to malloc for block number 1:  0x13a3000
+ * program break after call to malloc for block number 2:  0x13a3000
+ * program break after call to malloc for block number 3:  0x13d5000
+ * program break after call to malloc for block number 4:  0x13d5000
+ * program break after call to malloc for block number 5:  0x1407000
+ * program break after call to malloc for block number 6:  0x1407000
+ * program break after call to malloc for block number 7:  0x1439000
+ * program break after call to malloc for block number 8:  0x1439000
+ * program break after call to malloc for block number 9:  0x146b000
+ * Program break after allocating all the blocks is  0x146b000
+ * Freeing blocks from 1 to 10 in steps of 1
+ * Program break after freeing blocks is  0x1371000
+ *
+ * Observe that
+ * program break after call to malloc for block number 0 to 9 are same
+ * for some consecutive calls, but changes periodically.
+ * This is different from output of command
+ * `./free_and_sbrk.out 10 1024` and `./free_and_sbrk 101 102400`
+ *
+ * This is because
+ * malloc() doesn’t employ sbrk()
+ * to adjust the program break on each call, but instead periodically 
+ * allocates larger chunks of memory from which it passes back small 
+ * pieces to the caller.
+ *
+ * (Refer Stackoverflow bookmarked:
+ * Program break doesnt change after calling malloc in a loop?)
+ * VERIFY this? --> glibc overallocates a lot, so the value has to be 
+ * large enough for it to see it. And the default M_MMAP_THRESHOLD seem
+ * to be 128 * 1024 (not necessarily).
+ * So you have to pick a value large enough, but below mmap threshold 
+ * to see a difference in glibc.
+ */
+ *
