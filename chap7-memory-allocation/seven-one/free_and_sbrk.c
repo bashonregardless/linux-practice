@@ -257,4 +257,3 @@ main(int argc, char *argv[])
  * So you have to pick a value large enough, but below mmap threshold 
  * to see a difference in glibc.
  */
- *

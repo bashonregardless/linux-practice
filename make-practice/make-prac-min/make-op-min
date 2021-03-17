@@ -1,0 +1,23 @@
+lib fileio proc
+make[1]: Entering directory '/home/harshvardhan/linux-practice/make-practice/make-prac-min/lib'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/home/harshvardhan/linux-practice/make-practice/make-prac-min/lib'
+make[1]: Entering directory '/home/harshvardhan/linux-practice/make-practice/make-prac-min/fileio'
+cc -std=c99 -D_XOPEN_SOURCE=600 -D_DEFAULT_SOURCE -g -I../lib -pedantic -Wall -W -Wmissing-prototypes -Wno-sign-compare -Wimplicit-fallthrough -Wno-unused-parameter    atomic_append.c ../libtlpi.a   -o atomic_append
+cc -std=c99 -D_XOPEN_SOURCE=600 -D_DEFAULT_SOURCE -g -I../lib -pedantic -Wall -W -Wmissing-prototypes -Wno-sign-compare -Wimplicit-fallthrough -Wno-unused-parameter    bad_exclusive_open.c ../libtlpi.a   -o bad_exclusive_open
+cc -std=c99 -D_XOPEN_SOURCE=600 -D_DEFAULT_SOURCE -g -I../lib -pedantic -Wall -W -Wmissing-prototypes -Wno-sign-compare -Wimplicit-fallthrough -Wno-unused-parameter    copy.c ../libtlpi.a   -o copy
+cc -std=c99 -D_XOPEN_SOURCE=600 -D_DEFAULT_SOURCE -g -I../lib -pedantic -Wall -W -Wmissing-prototypes -Wno-sign-compare -Wimplicit-fallthrough -Wno-unused-parameter    multi_descriptors.c ../libtlpi.a   -o multi_descriptors
+cc -std=c99 -D_XOPEN_SOURCE=600 -D_DEFAULT_SOURCE -g -I../lib -pedantic -Wall -W -Wmissing-prototypes -Wno-sign-compare -Wimplicit-fallthrough -Wno-unused-parameter    seek_io.c ../libtlpi.a   -o seek_io
+cc -std=c99 -D_XOPEN_SOURCE=600 -D_DEFAULT_SOURCE -g -I../lib -pedantic -Wall -W -Wmissing-prototypes -Wno-sign-compare -Wimplicit-fallthrough -Wno-unused-parameter    t_readv.c ../libtlpi.a   -o t_readv
+cc -std=c99 -D_XOPEN_SOURCE=600 -D_DEFAULT_SOURCE -g -I../lib -pedantic -Wall -W -Wmissing-prototypes -Wno-sign-compare -Wimplicit-fallthrough -Wno-unused-parameter    t_truncate.c ../libtlpi.a   -o t_truncate
+cc -std=c99 -D_XOPEN_SOURCE=600 -D_DEFAULT_SOURCE -g -I../lib -pedantic -Wall -W -Wmissing-prototypes -Wno-sign-compare -Wimplicit-fallthrough -Wno-unused-parameter    large_file.c ../libtlpi.a   -o large_file
+make[1]: Leaving directory '/home/harshvardhan/linux-practice/make-practice/make-prac-min/fileio'
+make[1]: Entering directory '/home/harshvardhan/linux-practice/make-practice/make-prac-min/proc'
+cc -std=c99 -D_XOPEN_SOURCE=600 -D_DEFAULT_SOURCE -g -I../lib -pedantic -Wall -W -Wmissing-prototypes -Wno-sign-compare -Wimplicit-fallthrough -Wno-unused-parameter    bad_longjmp.c ../libtlpi.a   -o bad_longjmp
+cc -std=c99 -D_XOPEN_SOURCE=600 -D_DEFAULT_SOURCE -g -I../lib -pedantic -Wall -W -Wmissing-prototypes -Wno-sign-compare -Wimplicit-fallthrough -Wno-unused-parameter    display_env.c ../libtlpi.a   -o display_env
+cc -std=c99 -D_XOPEN_SOURCE=600 -D_DEFAULT_SOURCE -g -I../lib -pedantic -Wall -W -Wmissing-prototypes -Wno-sign-compare -Wimplicit-fallthrough -Wno-unused-parameter    longjmp.c ../libtlpi.a   -o longjmp
+cc -std=c99 -D_XOPEN_SOURCE=600 -D_DEFAULT_SOURCE -g -I../lib -pedantic -Wall -W -Wmissing-prototypes -Wno-sign-compare -Wimplicit-fallthrough -Wno-unused-parameter    necho.c ../libtlpi.a   -o necho
+cc -std=c99 -D_XOPEN_SOURCE=600 -D_DEFAULT_SOURCE -g -I../lib -pedantic -Wall -W -Wmissing-prototypes -Wno-sign-compare -Wimplicit-fallthrough -Wno-unused-parameter    setjmp_vars.c ../libtlpi.a   -o setjmp_vars
+cc -std=c99 -D_XOPEN_SOURCE=600 -D_DEFAULT_SOURCE -g -I../lib -pedantic -Wall -W -Wmissing-prototypes -Wno-sign-compare -Wimplicit-fallthrough -Wno-unused-parameter    t_getenv.c ../libtlpi.a   -o t_getenv
+cc -std=c99 -D_XOPEN_SOURCE=600 -D_DEFAULT_SOURCE -g -I../lib -pedantic -Wall -W -Wmissing-prototypes -Wno-sign-compare -Wimplicit-fallthrough -Wno-unused-parameter    modify_env.c ../libtlpi.a   -o modify_env
+make[1]: Leaving directory '/home/harshvardhan/linux-practice/make-practice/make-prac-min/proc'
