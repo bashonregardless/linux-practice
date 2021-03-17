@@ -5,8 +5,8 @@
 #
 
 DIRS = 	lib \
-	filebuff fileio \
-	proc
+	fileio \
+	proc \
 
 # The "namespaces" and "seccomp" directories are deliberately excluded from
 # the above list because much of the code in those directories requires a
@@ -23,6 +23,8 @@ BUILD_DIRS = ${DIRS}
 
 all: 	
 	@ echo ${BUILD_DIRS}
+	#@ for dir in ${BUILD_DIRS}; do (cd $${dir}; ${MAKE}) ; \
+		if test $$? -ne 0; then break; fi; done
 	@ for dir in ${BUILD_DIRS}; do \
 		(cd $${dir}; ${MAKE}) ; \
 		if test $$? -ne 0; then \
@@ -30,11 +32,13 @@ all:
 		done
 
 allgen: 
+	#@ for dir in ${BUILD_DIRS}; do (cd $${dir}; ${MAKE} allgen) ; done
 	@ for dir in ${BUILD_DIRS}; do \
 		(cd $${dir}; ${MAKE} allgen) ; \
 	done
 
 clean: 
+	#@ for dir in ${BUILD_DIRS}; do (cd $${dir}; ${MAKE} clean) ; done
 	@ for dir in ${BUILD_DIRS}; do \
 		(cd $${dir}; ${MAKE} clean) ; \
 	done

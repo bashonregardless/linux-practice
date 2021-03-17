@@ -7,6 +7,8 @@
 #
 include ../Makefile.inc
 
+.PHONY: all
+
 all : ${TLPI_LIB}
 
 OBJECTS=$(patsubst %.c,%.o,$(wildcard *.c))

@@ -7,6 +7,8 @@ LINUX_EXE = large_file
 
 EXE = ${GEN_EXE} ${LINUX_EXE}
 
+.PHONY: all
+
 all : ${EXE}
 
 allgen : ${GEN_EXE}
