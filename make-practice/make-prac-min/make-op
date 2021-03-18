@@ -1,0 +1,159 @@
+lib filebuff proc
+make[1]: Entering directory 'path/to//lib'
+rm -f ../libtlpi.a
+ar rs ../libtlpi.a *.o
+make[1]: Leaving directory 'path/to//lib'
+make[1]: Entering directory 'path/to/'
+lib filebuff proc
+make[2]: Entering directory 'path/to//lib'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory 'path/to//lib'
+make[2]: Entering directory 'path/to/'
+lib filebuff proc
+make[3]: Entering directory 'path/to//lib'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory 'path/to//lib'
+make[3]: Entering directory 'path/to/'
+lib filebuff proc
+make[4]: Entering directory 'path/to//lib'
+make[4]: Nothing to be done for 'all'.
+make[4]: Leaving directory 'path/to//lib'
+make[4]: Entering directory 'path/to/'
+lib filebuff proc
+make[5]: Entering directory 'path/to//lib'
+make[5]: Nothing to be done for 'all'.
+make[5]: Leaving directory 'path/to//lib'
+make[5]: Entering directory 'path/to/'
+lib filebuff proc
+make[6]: Entering directory 'path/to//lib'
+make[6]: Nothing to be done for 'all'.
+make[6]: Leaving directory 'path/to//lib'
+make[6]: Entering directory 'path/to/'
+lib filebuff proc
+make[7]: Entering directory 'path/to//lib'
+make[7]: Nothing to be done for 'all'.
+make[7]: Leaving directory 'path/to//lib'
+make[7]: Entering directory 'path/to/'
+lib filebuff proc
+make[8]: Entering directory 'path/to//lib'
+make[8]: Nothing to be done for 'all'.
+make[8]: Leaving directory 'path/to//lib'
+make[8]: Entering directory 'path/to/'
+lib filebuff proc
+make[9]: Entering directory 'path/to//lib'
+make[9]: Nothing to be done for 'all'.
+make[9]: Leaving directory 'path/to//lib'
+make[9]: Entering directory 'path/to/'
+lib filebuff proc
+make[10]: Entering directory 'path/to//lib'
+make[10]: Nothing to be done for 'all'.
+make[10]: Leaving directory 'path/to//lib'
+make[10]: Entering directory 'path/to/'
+lib filebuff proc
+make[11]: Entering directory 'path/to//lib'
+make[11]: Nothing to be done for 'all'.
+make[11]: Leaving directory 'path/to//lib'
+make[11]: Entering directory 'path/to/'
+lib filebuff proc
+make[12]: Entering directory 'path/to//lib'
+make[12]: Nothing to be done for 'all'.
+make[12]: Leaving directory 'path/to//lib'
+make[12]: Entering directory 'path/to/'
+lib filebuff proc
+make[13]: Entering directory 'path/to//lib'
+make[13]: Nothing to be done for 'all'.
+make[13]: Leaving directory 'path/to//lib'
+make[13]: Entering directory 'path/to/'
+lib filebuff proc
+make[14]: Entering directory 'path/to//lib'
+make[14]: Nothing to be done for 'all'.
+make[14]: Leaving directory 'path/to//lib'
+make[14]: Entering directory 'path/to/'
+lib filebuff proc
+make[15]: Entering directory 'path/to//lib'
+make[15]: Nothing to be done for 'all'.
+make[15]: Leaving directory 'path/to//lib'
+make[15]: Entering directory 'path/to/'
+lib filebuff proc
+make[16]: Entering directory 'path/to//lib'
+make[16]: Nothing to be done for 'all'.
+make[16]: Leaving directory 'path/to//lib'
+make[16]: Entering directory 'path/to/'
+lib filebuff proc
+make[17]: Entering directory 'path/to//lib'
+make[17]: Nothing to be done for 'all'.
+make[17]: Leaving directory 'path/to//lib'
+make[17]: Entering directory 'path/to/'
+lib filebuff proc
+make[18]: Entering directory 'path/to//lib'
+make[18]: Nothing to be done for 'all'.
+make[18]: Leaving directory 'path/to//lib'
+make[18]: Entering directory 'path/to/'
+lib filebuff proc
+make[19]: Entering directory 'path/to//lib'
+make[19]: Nothing to be done for 'all'.
+make[19]: Leaving directory 'path/to//lib'
+make[19]: Entering directory 'path/to/'
+lib filebuff proc
+make[20]: Entering directory 'path/to//lib'
+make[20]: Nothing to be done for 'all'.
+make[20]: Leaving directory 'path/to//lib'
+make[20]: Entering directory 'path/to/'
+lib filebuff proc
+make[21]: Entering directory 'path/to//lib'
+make[21]: Nothing to be done for 'all'.
+make[21]: Leaving directory 'path/to//lib'
+make[21]: Entering directory 'path/to/'
+lib filebuff proc
+make[22]: Entering directory 'path/to//lib'
+make[22]: Nothing to be done for 'all'.
+make[22]: Leaving directory 'path/to//lib'
+make[22]: Entering directory 'path/to/'
+lib filebuff proc
+make[23]: Entering directory 'path/to//lib'
+make[23]: Nothing to be done for 'all'.
+make[23]: Leaving directory 'path/to//lib'
+make[23]: Entering directory 'path/to/'
+lib filebuff proc
+make[24]: Entering directory 'path/to//lib'
+make[24]: Nothing to be done for 'all'.
+make[24]: Leaving directory 'path/to//lib'
+make[24]: Entering directory 'path/to/'
+lib filebuff proc
+make[25]: Entering directory 'path/to//lib'
+make[25]: Nothing to be done for 'all'.
+make[25]: Leaving directory 'path/to//lib'
+make[25]: Entering directory 'path/to/'
+lib filebuff proc
+make[26]: Entering directory 'path/to//lib'
+make[26]: Nothing to be done for 'all'.
+make[26]: Leaving directory 'path/to//lib'
+make[26]: Entering directory 'path/to/'
+lib filebuff proc
+Makefile:22: recipe for target 'all' failed
+Makefile:22: recipe for target 'all' failed
+Makefile:22: recipe for target 'all' failed
+Makefile:22: recipe for target 'all' failed
+Makefile:22: recipe for target 'all' failed
+Makefile:22: recipe for target 'all' failed
+Makefile:22: recipe for target 'all' failed
+Makefile:22: recipe for target 'all' failed
+Makefile:22: recipe for target 'all' failed
+Makefile:22: recipe for target 'all' failed
+Makefile:22: recipe for target 'all' failed
+Makefile:22: recipe for target 'all' failed
+Makefile:22: recipe for target 'all' failed
+Makefile:22: recipe for target 'all' failed
+Makefile:22: recipe for target 'all' failed
+Makefile:22: recipe for target 'all' failed
+Makefile:22: recipe for target 'all' failed
+Makefile:22: recipe for target 'all' failed
+Makefile:22: recipe for target 'all' failed
+Makefile:22: recipe for target 'all' failed
+Makefile:22: recipe for target 'all' failed
+Makefile:22: recipe for target 'all' failed
+Makefile:22: recipe for target 'all' failed
+Makefile:22: recipe for target 'all' failed
+Makefile:22: recipe for target 'all' failed
+Makefile:22: recipe for target 'all' failed
+Makefile:22: recipe for target 'all' failed

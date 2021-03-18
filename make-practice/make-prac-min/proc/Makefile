@@ -7,8 +7,6 @@ LINUX_EXE = modify_env
 
 EXE = ${GEN_EXE} ${LINUX_EXE}
 
-.PHONY: all
-
 all : ${EXE}
 
 allgen : ${GEN_EXE}
