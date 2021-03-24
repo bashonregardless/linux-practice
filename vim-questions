@@ -1,0 +1,11 @@
+Questions to which the page number and section has to be found out in next
+reading of the book PRACTICAL VIM
+
+
+Tue Mar 23 19:26:46 IST 2021
+1. How to yank (and not visually select) in reverse direction from character under 
+  cursor (including the character under cursor) to some character?
+  Note the default behaviour of vim is that the character under the cursor
+  is not yanked.
+
+  PAGE:  , SECTION:
