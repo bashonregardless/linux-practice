@@ -3,16 +3,16 @@ real=1000 effective=0 saved=0 file-system=0. What would be the state of the user
 after the following calls?
 
 A. a) setuid(2000);
-r: 1000		e: 2000		saved: 2000 	fs: 0
+r: 1000		e: EPERM. No change		saved: 0 	fs: 0
 
 b) setreuid(-1, 2000);
-r: 1000 	e: 2000 	saved: 2000 	fs: 0
+r: 1000 	e: EPERM. No change 	saved: 0 	fs: 0
 
 c) seteuid(2000);
-r: 1000 	e: 2000 	saved: 2000 	fs: 0
+r: 1000 	e: EPERM. No change 	saved: 2000 	fs: 0
 
 d) setfsuid(2000);
 r: 1000 	e: 0 		saved: 0 		fs: 2000
 
 e) setresuid(-1, 2000, 3000);
-r; 1000 	e: 2000 	saved: 3000 	fs: 0
+r; 1000 	e: EPERM. No change 	saved: EPERM. No change		fs: 0
