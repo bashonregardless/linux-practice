@@ -1,4 +1,4 @@
 .SHELL = /bin/sh
 
-getpwnam.out: getpwnam.c
-	cc -g -o $@  getpwnam.c
+getpwnam-using-other-api.out: getpwnam-using-other-api.c
+	cc -o $@ -g getpwnam-using-other-api.c
