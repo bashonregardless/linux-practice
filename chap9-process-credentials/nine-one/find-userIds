@@ -15,4 +15,31 @@ d) setfsuid(2000);
 r: 1000 	e: 0 		saved: 0 		fs: 2000
 
 e) setresuid(-1, 2000, 3000);
-r; 1000 	e: EPERM. No change 	saved: EPERM. No change		fs: 0
+r: 1000 	e: EPERM. No change 	saved: EPERM. No change		fs: 0
+
+
+****** Reattempt *******
+
+NOTE: the effective userID is root but the real is not.
+
+RECALL: (refer Pg 168)
+A process whose effective user ID is 0 (the user ID of root) has all of the
+privileges of the superuser. Such a process is referred to as a privileged process.
+Certain system calls can be executed only by privileged processes.
+
+A. a) setuid(2000);
+r: 2000		e: 2000		saved: 2000 	fs: 0
+
+b) setreuid(-1, 2000);
+r: 1000 	e: 2000 	saved: 2000 	fs: 0
+
+c) seteuid(2000);
+r: 1000 	e: 2000 	saved: 0 	fs: 0
+
+d) setfsuid(2000);
+r: 1000 	e: 0 		saved: 0 		fs: 2000
+
+e) setresuid(-1, 2000, 3000);
+r: 1000 	e: 2000 	saved: 3000		fs: 0
+
+TODO fs id values are not correct.

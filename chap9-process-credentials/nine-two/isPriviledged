@@ -1,0 +1,13 @@
+Q. Is a process with the following user IDs privileged? Explain your answer.
+
+real=0 effective=1000 saved=1000 file-system=1000
+
+A. The process is not priviledged with the current IDs.
+   The process can become priviledged by making following
+   system calls:
+   a. setuid(0)
+   b. seteuid(0)
+   c. setreuid(-1, 0)
+   d. setresuid(-1, 0, 1000)
+
+TODO Verify if the system calls are correct or not.

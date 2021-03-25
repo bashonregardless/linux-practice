@@ -9,3 +9,12 @@ Tue Mar 23 19:26:46 IST 2021
   is not yanked.
 
   PAGE:  , SECTION:
+
+Wed Mar 24 23:44:40 IST 2021
+3. How to yank contiguous lines in ex mode and paste below the cursor.
+   
+   Current method:
+   As of now I first go to the first line of the contiguos lines to be copied.
+   Then use visual mode to hilight the contiguos lines, yank them and then
+   I go back to the line where I want to paste them.
+
