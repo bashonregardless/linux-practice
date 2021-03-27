@@ -1,0 +1,23 @@
+****** Attempt 1 ******
+a.
+	setuid(X), seteuid(X), setreuid(-1, X), setresuid(-1, X, -1)
+	Now to switch back,
+	setuid(Y), seteuid(Y), setreuid(-1, Y), setresuid(-1, Y, -1)
+
+DOUBT: How is saved set-user-id effected when effective user-id and
+real user-id is changed?
+
+b. Not attempted
+
+
+******* Attempt 2 ******
+eff_uid = geteuid();
+
+// setuid()
+setuid(getuid()); /* suspend */
+setuid(eff_uid); /* resume */
+/* dropping permanently not possible */
+
+TODO Complete remaining
+
+
