@@ -15,8 +15,8 @@ CFLAGS = -std=c99 -D_XOPEN_SOURCE=600 \
 INCLUDEFLAGS = -I
 INCLUDEDIRS =  ../../tlpi-book/lib
 
-irrevocablyDropPrivileges.out: irrevocablyDropPrivileges.o
-	$(CC) $(CFLAGS)  $(INCLUDEFLAGS) $(INCLUDEDIRS) $^ $(INCLUDEDIRS)/error_functions.o -o $@
+irrevocablyDropAllPrivileges.out: irrevocablyDropAllPrivileges.o
+	$(CC) $(CFLAGS) $(INCLUDEFLAGS) $(INCLUDEDIRS) $^ $(INCLUDEDIRS)/error_functions.o -o $@
 
-irrevocablyDropPrivileges.o: irrevocablyDropPrivileges.c
+irrevocablyDropAllPrivileges.o: irrevocablyDropAllPrivileges.c
 	$(CC) $(CFLAGS) $(INCLUDEFLAGS) $(INCLUDEDIRS) -c $^
