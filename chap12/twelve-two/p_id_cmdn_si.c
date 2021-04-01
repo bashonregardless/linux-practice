@@ -4,12 +4,18 @@
 #include <dirent.h>
 #include <stddef.h>
 #include <string.h>
+#include <stdarg.h>
+
+#include <sys/types.h>
+#include <sys/stat.h>
 
 #include <errno.h>
 
 #include <pwd.h>
 #include "tlpi_hdr.h"
 #include "ugid_functions.h"
+
+#include <ctype.h>
 
 /* copied code */
 uid_t           /* Return UID corresponding to 'name', or -1 on error */
@@ -36,34 +42,41 @@ userIdFromName(const char *name)
 int
 main (int argc, char **argv)
 {
-  int pfd;
-  char pathname[100];
+  int pfd, dfd, name_max, countdirs;
+  char pathname[100], dirname[256];
   struct dirent *dirst;
-  int name_max;
   char *base = "/proc/";
   DIR *procdirstream;
-  int countdirs;
+  struct stat sb;
+  uid_t uid;
+  char line[128];
+  char *token;
 
-  /* (See https://www.gnu.org/software/libc/manual/html_node/Reading_002fClosing-Directory.html)
-   * 
-   * To distinguish between an end-of-directory condition or an error,
-   * you must set errno to zero before calling readdir. To avoid 
-   * entering an infinite loop, you should stop reading from the directory
-   * after the first error.
-   */
-  errno = 0; 
+  if (argc != 2 || strcmp(argv[1], "--help") == 0)
+	usageErr("%s username", argv[0]);
+  
+  uid = userIdFromName(argv[1]);
 
   if ((procdirstream = opendir(base)) == NULL) {
 	strerror(errno);
 	exit(EXIT_FAILURE);
   }
 
-  name_max = pathconf("/proc", _PC_NAME_MAX);
-  if (name_max == -1)         /* Limit not defined, or error */
-	name_max = 855;         /* Take a guess */
+  if ((dfd = dirfd(procdirstream)) == -1) {
+	exit(EXIT_FAILURE);
+  }
 
   countdirs = 0;
   while (1) {
+	/* (See https://www.gnu.org/software/libc/manual/html_node/Reading_002fClosing-Directory.html)
+	 * 
+	 * To distinguish between an end-of-directory condition or an error,
+	 * you must set errno to zero before calling readdir. To avoid 
+	 * entering an infinite loop, you should stop reading from the directory
+	 * after the first error.
+	 */
+	errno = 0;
+
 	/* (See https://www.gnu.org/software/libc/manual/html_node/Reading_002fClosing-Directory.html)
 	 *
 	 * readdir_r allows you to provide your own buffer for the struct dirent,
@@ -75,6 +88,8 @@ main (int argc, char **argv)
 	 * readdir instead of readdir_r for the following reasons:
 	 */
 	dirst = readdir(procdirstream);
+	if (dirst == NULL)
+	  break;
 	/* Caution: The pointer returned by readdir points to a buffer within 
 	 * the DIR object. The data in that buffer will be overwritten by the
 	 * next call to readdir. You must take care, for instance, to copy the
@@ -94,39 +109,50 @@ main (int argc, char **argv)
 	 * EBADF
 	 * The dirstream argument is not valid.
 	 */
-	if (dirst == NULL) {
-	  if (errno == 0)
-		printf("End of dir stream reached\n");
-	  else {
-		strerror(errno);
-		exit(EXIT_FAILURE);
-	  }
-	  break;
-	}
-
-	if((strcmp(dirst->d_name, ".") != 0) && (strcmp(dirst->d_name, "..") != 0))
+	if((strcmp(dirst->d_name, ".") == 0) || (strcmp(dirst->d_name, "..") == 0))
 	  continue; /* Skip . and .. */
+
+	name_max = pathconf("/proc/", _PC_NAME_MAX);
+	if (name_max == -1)         /* Limit not defined, or error */
+	  name_max = 255;         /* Take a guess */
 
 	/* (Refer Stackoverflow bookmarked:
 	 * Convert integer to be used in strcat)
 	 */
-	/* FIXME is the code poriton to allocate size correct? */
-	snprintf(pathname, sizeof("/proc/") + sizeof(name_max) + 1,
-		"%s%s/status", base, *dirst->d_name);
+	/* TODO is the code portion to allocate size correct? */
+	snprintf(pathname, sizeof(dirname),
+		"%s%s/status", base, dirst->d_name);
 
-	if ((pfd = open(pathname, O_RDONLY)) == -1) {
-	  printf("%s \n", strerror(errno));
-	  exit(EXIT_FAILURE);
-	}
-	if (close(pfd) == -1) {
-	  errExit("close");
+	if (stat(pathname, &sb) == -1) 
+	  continue;
+
+	/* FIXME conditional check fails for file "/proc/fb/" */
+	if ((sb.st_mode & S_IFMT) == S_IFREG) {
+	  /* Handle  file */
+	  printf("%s\n", pathname);
+	  if ((pfd = openat(dfd, pathname, O_RDONLY)) == -1) {
+		printf("%s \n", strerror(errno));
+	  }
+	  else {
+		/* Do some work on file */
+		while (1) {
+		  if (fgets(line, sizeof line, pfd) == NULL)
+			errExit("fgets");
+		}
+		/* Close file fd */
+		if (close(pfd) == -1)
+		  errExit("close");
+	  }
 	}
 
-	countdirs++;
 	printf("%s\n", pathname);
   }
 
-  printf("%d directories found\n", countdirs);
+  if (errno != 0) {
+	strerror(errno);
+	exit(EXIT_FAILURE);
+  }
+
   /* close directory stream */
   if (closedir(procdirstream) == -1) {
 	strerror(errno);
