@@ -13,9 +13,21 @@
 
 #include <pwd.h>
 #include "tlpi_hdr.h"
+#include "get_num.h"
 #include "ugid_functions.h"
 
 #include <ctype.h>
+void trim(char * s);
+
+void trim(char * s) {
+  char * p = s;
+  int l = strlen(p);
+
+  while(isspace(p[l - 1])) p[--l] = 0;
+  while(* p && isspace(* p)) ++p, --l;
+
+  memmove(s, p, l + 1);
+}
 
 /* copied code */
 uid_t           /* Return UID corresponding to 'name', or -1 on error */
@@ -42,21 +54,27 @@ userIdFromName(const char *name)
 int
 main (int argc, char **argv)
 {
-  int pfd, dfd, name_max, countdirs;
+  int dfd;
+  pid_t pid;
   char pathname[100], dirname[256];
   struct dirent *dirst;
   char *base = "/proc/";
   DIR *procdirstream;
+  FILE *fst;
   struct stat sb;
   uid_t uid;
   char line[128];
-  char *token;
+  char *token, *name;
+  char *saveptr;
+  long realuid;
 
   if (argc != 2 || strcmp(argv[1], "--help") == 0)
-	usageErr("%s username", argv[0]);
+	usageErr("%s username\n", argv[0]);
   
+  uid = -1;
   uid = userIdFromName(argv[1]);
 
+  /* open dir stream */
   if ((procdirstream = opendir(base)) == NULL) {
 	strerror(errno);
 	exit(EXIT_FAILURE);
@@ -66,88 +84,108 @@ main (int argc, char **argv)
 	exit(EXIT_FAILURE);
   }
 
-  countdirs = 0;
   while (1) {
-	/* (See https://www.gnu.org/software/libc/manual/html_node/Reading_002fClosing-Directory.html)
-	 * 
-	 * To distinguish between an end-of-directory condition or an error,
-	 * you must set errno to zero before calling readdir. To avoid 
-	 * entering an infinite loop, you should stop reading from the directory
-	 * after the first error.
-	 */
+	/* To check for errors */
 	errno = 0;
 
-	/* (See https://www.gnu.org/software/libc/manual/html_node/Reading_002fClosing-Directory.html)
-	 *
-	 * readdir_r allows you to provide your own buffer for the struct dirent,
-	 * but it is less portable than readdir, and has problems with very long 
-	 * filenames (see below). We recommend you use readdir, but do not share 
-	 * DIR objects.
-	 *
-	 * Portability Note: readdir_r is deprecated. It is recommended to use 
-	 * readdir instead of readdir_r for the following reasons:
-	 */
+	/* read from dir stream	 */
 	dirst = readdir(procdirstream);
 	if (dirst == NULL)
 	  break;
-	/* Caution: The pointer returned by readdir points to a buffer within 
-	 * the DIR object. The data in that buffer will be overwritten by the
-	 * next call to readdir. You must take care, for instance, to copy the
-	 * d_name string if you need it later.
-	 *
-	 * Because of this, it is not safe to share a DIR object among multiple 
-	 * threads, unless you use your own locking to ensure that no thread calls
-	 * readdir while another thread is still using the data from the previous 
-	 * call. In the GNU C Library, it is safe to call readdir from multiple 
-	 * threads as long as each thread uses its own DIR object.
-	 */
 	
-	/* If there are no more entries in the directory or an error is detected,
-	 * readdir returns a null pointer. The following errno error conditions are 
-	 * defined for this function:
-	 *
-	 * EBADF
-	 * The dirstream argument is not valid.
-	 */
 	if((strcmp(dirst->d_name, ".") == 0) || (strcmp(dirst->d_name, "..") == 0))
 	  continue; /* Skip . and .. */
 
-	name_max = pathconf("/proc/", _PC_NAME_MAX);
-	if (name_max == -1)         /* Limit not defined, or error */
-	  name_max = 255;         /* Take a guess */
-
-	/* (Refer Stackoverflow bookmarked:
-	 * Convert integer to be used in strcat)
-	 */
+	/* Convert integer to be used */
 	/* TODO is the code portion to allocate size correct? */
 	snprintf(pathname, sizeof(dirname),
 		"%s%s/status", base, dirst->d_name);
 
-	if (stat(pathname, &sb) == -1) 
-	  continue;
-
-	/* FIXME conditional check fails for file "/proc/fb/" */
-	if ((sb.st_mode & S_IFMT) == S_IFREG) {
-	  /* Handle  file */
-	  printf("%s\n", pathname);
-	  if ((pfd = openat(dfd, pathname, O_RDONLY)) == -1) {
-		printf("%s \n", strerror(errno));
-	  }
-	  else {
-		/* Do some work on file */
-		while (1) {
-		  if (fgets(line, sizeof line, pfd) == NULL)
-			errExit("fgets");
-		}
-		/* Close file fd */
-		if (close(pfd) == -1)
-		  errExit("close");
-	  }
+	if (stat(pathname, &sb) == -1) {
+	  printf("%s @ stat\n", strerror(errno));
+	  continue; /* Continue if stat call fails */
 	}
 
 	printf("%s\n", pathname);
+
+	if ((sb.st_mode & S_IFMT) != S_IFREG) /* Check for file type */
+	  continue; /* Continue if not a regular file */
+
+	/* Handle regular file */
+
+	/* Open file stream */
+	if ((fst = fopen(pathname, "r")) == NULL) {
+	  printf("%s \n", strerror(errno));
+	  continue; /* Continue if fopen fails */
+	}
+
+	/* Do some work on file, a line at a time. */
+
+	pid = -1;
+	name = NULL;
+	realuid = -1;
+	/* Do some work on file, a line at a time. */
+	while (!(pid != -1 && name != NULL && realuid != -1)
+		&& fgets(line, sizeof line, fst) != NULL) {
+	  /* Tokenize
+	   * delimiter ":" */
+	  if ((token = strtok_r(line, ":", &saveptr)) == NULL) {
+		printf("No token\n");
+		continue; /* Continue if no token found */
+	  }
+
+	  /* If token is either "Name" or "Uid" */
+	  if (strcmp(token, "Pid") == 0) {
+		/* Get next token */
+		if ((token = strtok_r(NULL, ":", &saveptr)) == NULL) {
+		  printf("No token\n");
+		  continue; /* Continue if no token found */
+		}
+		trim(token);
+		pid = getInt(token, GN_GT_0, "pid");
+	  }
+
+	  if (strcmp(token, "Name") == 0) {
+		/* Get next token */
+		if ((token = strtok_r(NULL, ":", &saveptr)) == NULL) {
+		  printf("No token\n");
+		  continue; /* Continue if no token found */
+		}
+		name = token;
+	  }
+
+	  if (strcmp(token, "Uid") == 0) {
+		/* Tokenize
+		 * delimiter: "\t" */
+		if ((token = strtok_r(NULL, ":", &saveptr)) == NULL) {
+		  printf("No token\n");
+		  continue; /* Continue if no token found */
+		}
+	
+		if ((token = strtok_r(token, "\t", &saveptr)) == NULL) {
+		  printf("No token\n");
+		  continue; /* Continue if no token found */
+		}
+		trim(token);
+		realuid = getInt(token, GN_ANY_BASE, "realuid");
+
+		if (uid == realuid) {
+		  if (pid != -1 && name != NULL) {
+			printf("Pid: %ld\nName: %s\n", (long) pid, name);
+			break;
+		  }
+		}
+	  }
+	}
+
+	/* Close file stream */
+	if (fclose(fst) == -1)
+	  errExit("close");
+
+	printf("\n\n");
   }
 
+  /* check  any  error */
   if (errno != 0) {
 	strerror(errno);
 	exit(EXIT_FAILURE);
