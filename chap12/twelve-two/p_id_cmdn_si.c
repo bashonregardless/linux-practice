@@ -99,6 +99,7 @@ void readfdata(char *pathname, uid_t uid)
 		printf("No token\n");
 		continue; /* Continue if no token found */
 	  }
+	  trim(token);
 	  name = token;
 	}
 
@@ -117,12 +118,10 @@ void readfdata(char *pathname, uid_t uid)
 	  trim(token);
 	  realuid = getInt(token, GN_ANY_BASE, "realuid");
 
-	  if (uid == realuid) {
-		if (pid != -1 && name != NULL) {
-		  printf("Pid: %ld\nName: %s\n", (long) pid, name);
-		  printf("\n\n");
-		  break;
-		}
+	  if (uid == realuid && pid != -1 && name != NULL) {
+		printf("Pid: %ld\nName: %s\n", (long) pid, name);
+		printf("\n\n");
+		break;
 	  }
 	}
   }
