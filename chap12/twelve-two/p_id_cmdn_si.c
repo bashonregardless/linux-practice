@@ -1,3 +1,8 @@
+/* TODO Make sure your program
+ * correctly handles the possibility that a /proc/ PID directory disappears between the
+ * time that the program determines that the directory exists and the time that it tries
+ * to open the corresponding /proc/ PID /status file.
+ */
 #include <fcntl.h>
 #include <unistd.h>
 
@@ -76,7 +81,7 @@ void readfdata(char *pathname, uid_t uid)
   while (!(pid != -1 && name != NULL && realuid != -1)
 	  && fgets(line, sizeof line, fst) != NULL) {
 	/* Tokenize
-	 * 	   * delimiter ":" */
+	 * delimiter ":" */
 	if ((token = strtok_r(line, ":", &saveptr)) == NULL) {
 	  printf("No token\n");
 	  continue; /* Continue if no token found */
