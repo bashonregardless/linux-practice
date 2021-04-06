@@ -1,0 +1,20 @@
+BUF_SIZE set to 1024
+
+o/p
+real    0m0.006s
+user    0m0.005s
+sys     0m0.002s
+
+
+BUF_SIZE set to 1
+
+o/p
+real    0m0.230s
+user    0m0.084s
+sys     0m0.147s
+
+
+Observation
+sys time significantly higher in latter. This shows that
+context switch from user mode to kernel mode is higher. VERIFY?
+REASON?
