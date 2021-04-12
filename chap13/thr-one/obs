@@ -1,3 +1,5 @@
+13-1
+a)
 BUF_SIZE set to 1024
 
 o/p
@@ -16,5 +18,69 @@ sys     0m0.147s
 
 Observation
 sys time significantly higher in latter. This shows that
-context switch from user mode to kernel mode is higher. VERIFY?
+context switch from user mode to kernel mode is higher,
+the processor is for more time in kernel mode than user
+mode. VERIFY?
 REASON?
+
+
+
+
+With O_SYNC flag
+
+
+
+
+
+13-1
+b)
+BUF_SIZE set to 1
+
+test1 o/p; The program had to be terminated with ^C
+
+real    6m24.075s
+user    0m0.146s
+sys     0m2.218s
+
+
+BUF_SIZE set to 1024
+
+o/p
+real    0m3.125s
+user    0m0.001s
+sys     0m0.024s
+
+
+Observation
+(See Performance impact of O_SYNC on page 242)
+
+
+
+
+13-1
+c) TODO Exercise
+
+
+
+
+13-2) TODO
+
+
+
+
+13-3)
+The effect of the following statements
+`
+fflush(fp);
+fsync(fileno(fp));
+`
+is that data in the stdio output stream will be forced
+to be written (i.e, flushed to a kernel buffer via write()).
+If stream (here, fp), fflush() flushes all stdio buffers.
+
+The fsync() system call causes the buffered data and all 
+metadata associated with the open file descriptor fd to be
+flushed to disk. Calling fsync() forces the file to the 
+synchronized I/O file integrity completion state.
+An fsync() call returns only after the transfer to the disk
+device (or at least its cache) has completed.
