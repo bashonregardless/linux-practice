@@ -1,0 +1,12 @@
+This file was created from linux-practice/ dir as a side effect of command
+`git add . > chap15/fifteen-one/obs`
+
+Able to write and save this file from linux-practice/ dir.
+
+`git add .` command gives error:
+  warning: unable to access 'chap15/fifteen-one/testdir/.gitignore': Permission denied
+  error: open("chap15/fifteen-one/test.c"): Permission denied
+  error: unable to index file chap15/fifteen-one/test.c
+  fatal: adding files failed
+  
+Now I will change the permissiions on dir chap15/fifteen-one/testdir/
