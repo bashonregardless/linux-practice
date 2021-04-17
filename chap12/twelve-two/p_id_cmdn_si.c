@@ -171,6 +171,7 @@ main (int argc, char **argv)
 
 	/* Form pathname to be used */
 	/* TODO is the code portion to allocate size correct? */
+	/* Refer tlpi book Listing 15-4 to see use of api snprintf() */
 	snprintf(pathname, sizeof(dirname),
 		"%s%s/status", base, dirst->d_name);
 
