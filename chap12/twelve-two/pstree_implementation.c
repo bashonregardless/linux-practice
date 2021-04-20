@@ -62,6 +62,15 @@ main(int args, char **argv)
   }
 
   while (1) {
+	errno = 0;
+	/* TODO
+	 * NOTE keeping `errno = 0` initalization outside while loop
+	 * sets errno and takes path of errExit() in
+	 * readdir() error checking code below.
+	 * This is probably because, some funtion below in this loop
+	 * sets errno to non-zero value.
+	 */
+
 	/* Read from directory stream */
 	if ((dirst = readdir(procdirst)) == NULL) {
 	  if (errno == 0) {
@@ -76,10 +85,12 @@ main(int args, char **argv)
 	  continue; /* Skip . and .. */
 
 	/* Form /proc/PID directory pathname. Concatenate using snprintf() */
-	snprintf(proc_dirname, PATHNAME_BUF_SIZE, "%s/%s", base, dirst->d_name);
+	snprintf(proc_dirname, PATHNAME_BUF_SIZE, "%s%s", base, dirst->d_name);
 
-	if (stat(proc_dirname, &sb) == -1) 
-	  errExit("stat proc_dirname");
+	if (stat(proc_dirname, &sb) == -1) {
+	  printf("Cannot open file.: stat proc_dirname: %s\n", proc_dirname);
+	  continue;
+	}
 
 	if ((sb.st_mode & S_IFMT) != S_IFDIR) /* Check for file type */
 	  continue; /* Skip if not a dir */
@@ -96,8 +107,10 @@ main(int args, char **argv)
 	  continue; /* Skip if not a regular file */
 
 	printf("%s\n", pathname);
-	
   }
+
+  if (closedir(procdirst) == -1)
+	errExit("closedir");
 
   exit(EXIT_SUCCESS);
 }

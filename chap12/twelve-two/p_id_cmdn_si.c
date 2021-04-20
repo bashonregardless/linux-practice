@@ -167,8 +167,14 @@ main (int argc, char **argv)
 
 	/* read from dir stream	 */
 	dirst = readdir(procdirstream);
-	if (dirst == NULL)
-	  break;
+	if (dirst == NULL) {
+	  if (errno == 0) {
+		printf("\n\nEnd of dir strean\n\n");
+		break;
+	  }
+	  else
+		errExit("readdir"); 
+	}
 	
 	if((strcmp(dirst->d_name, ".") == 0) || (strcmp(dirst->d_name, "..") == 0))
 	  continue; /* Skip . and .. */
