@@ -26,7 +26,7 @@ struct node {
 int
 main(int args, char **argv)
 {
-  DIR dirst;
+  DIR *dirst;
   char *pathname;
 
   pathname = "/proc/";

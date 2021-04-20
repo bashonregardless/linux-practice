@@ -1,6 +1,6 @@
 .SHELL = /bin/sh
 
-TLPI_DIR = ../../
+TLPI_DIR = ../..
 #TLPI_LIB = ${TLPI_DIR}/libtlpi.a
 TLPI_INCL_DIR = ${TLPI_DIR}/tlpi-book/lib
 
