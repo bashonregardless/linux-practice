@@ -5,13 +5,7 @@
 /* Use information in /proc/PID/status files */
 
 #include <fcntl.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-#include <sys/types.h>
 #include <dirent.h>
-
-#include <errno.h>
 
 #include "tlpi_hdr.h"
 
@@ -29,6 +23,22 @@ main(int args, char **argv)
   DIR *dirst;
   char *pathname;
 
+  /* TODO without declaration and initialization step
+   * `
+   * int errno;
+   * errno = 0;
+   * `
+   * errExit() function does the right thing. How?
+   *
+   * NOTE that following headers are declared in the
+   * file tlpi_hdr.h
+   * 	errno
+   * 	stdlib
+   * 	stdio
+   * 	unistd
+   * 	sys/types
+   * 	string
+   */
   pathname = "/proc/";
   if ((dirst = opendir(pathname)) == NULL) {
 	/* TODO Is it true that I don't have to pass errno
