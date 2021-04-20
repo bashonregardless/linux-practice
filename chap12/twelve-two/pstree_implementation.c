@@ -24,7 +24,15 @@ int
 main(int args, char **argv)
 {
   DIR *procdirst;
-  char *base, *proc_dirname, *pathname;
+  char *base, proc_dirname[PATHNAME_BUF_SIZE],
+  pathname[PATHNAME_BUF_SIZE];
+  /* Conceptual(C)
+   * TODO declaration of string as given in code below
+   * `
+   * char *proc_dirname, *pathname;
+   * `
+   * gives warning: proc_dirname, pathname may be uninitialized
+   */
   struct dirent *dirst;
   struct stat sb;
   /* TODO without declaration and initialization step
@@ -54,28 +62,38 @@ main(int args, char **argv)
   }
 
   while (1) {
+	/* Read from directory stream */
 	if ((dirst = readdir(procdirst)) == NULL) {
-	  if (errno = 0)
+	  if (errno == 0) {
 		printf("\n\nEnd of dir strean\n\n");
+		break;
+	  }
 	  else
-		errExit("readdir %s", dirst->d_name); 
+		errExit("readdir"); 
 	}
 
+	if((strcmp(dirst->d_name, ".") == 0) || (strcmp(dirst->d_name, "..") == 0))
+	  continue; /* Skip . and .. */
+
+	/* Form /proc/PID directory pathname. Concatenate using snprintf() */
 	snprintf(proc_dirname, PATHNAME_BUF_SIZE, "%s/%s", base, dirst->d_name);
 
 	if (stat(proc_dirname, &sb) == -1) 
 	  errExit("stat proc_dirname");
 
-	if ((sb.st_mode & S_IFMT) != S_IFREG) /* Check for file type */
-	  continue; /* Continue if not a regular file */
+	if ((sb.st_mode & S_IFMT) != S_IFDIR) /* Check for file type */
+	  continue; /* Skip if not a dir */
 
+	/* Form /proc/PID/status pathname. Concatenate using snprintf() */
 	snprintf(pathname, PATHNAME_BUF_SIZE, "%s/status", proc_dirname); 
 
-	if (stat(pathname, &sb) == -1) 
-	  errExit("stat file pathname");
+	if (stat(pathname, &sb) == -1) {
+	  printf("Cannot open file.: stat file pathname: %s\n", pathname);
+	  continue;
+	}
 
 	if ((sb.st_mode & S_IFMT) != S_IFREG) /* Check for file type */
-	  continue; /* Continue if not a regular file */
+	  continue; /* Skip if not a regular file */
 
 	printf("%s\n", pathname);
 	
