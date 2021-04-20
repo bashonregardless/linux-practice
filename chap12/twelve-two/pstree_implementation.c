@@ -21,8 +21,8 @@ int
 main(int args, char **argv)
 {
   DIR *dirst;
-  char *pathname;
-
+  char *base;
+  struct *dirent;
   /* TODO without declaration and initialization step
    * `
    * int errno;
@@ -39,14 +39,24 @@ main(int args, char **argv)
    * 	sys/types
    * 	string
    */
-  pathname = "/proc/";
-  if ((dirst = opendir(pathname)) == NULL) {
+  base = "/proc/";
+  if ((dirst = opendir(base)) == NULL) {
 	/* TODO Is it true that I don't have to pass errno
 	 * explicitly to errExit().
 	 * If the above statement is true, then during dynamic
 	 * linking phase this was taken care of.
 	 */
 	errExit("opendir");
+  }
+
+  while (1) {
+	snprintf(pathname, PATHNAME_BUF_SIZE, "%s/%s", base, ); 
+	if ((dirent = readdir(dirst)) == NULL) {
+	  if (errno = 0)
+		printf("\n\nEnd of dir strean\n\n");
+	  else
+		errxit("readdir %s",); 
+	}
   }
 
   exit(EXIT_SUCCESS);
