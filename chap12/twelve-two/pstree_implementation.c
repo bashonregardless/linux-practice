@@ -6,8 +6,11 @@
 
 #include <fcntl.h>
 #include <dirent.h>
+#include <sys/stat.h>
 
 #include "tlpi_hdr.h"
+
+#define PATHNAME_BUF_SIZE 256
 
 struct node {
   int children_count;
@@ -20,9 +23,10 @@ struct node {
 int
 main(int args, char **argv)
 {
-  DIR *dirst;
-  char *base;
-  struct *dirent;
+  DIR *procdirst;
+  char *base, *proc_dirname, *pathname;
+  struct dirent *dirst;
+  struct stat sb;
   /* TODO without declaration and initialization step
    * `
    * int errno;
@@ -40,9 +44,9 @@ main(int args, char **argv)
    * 	string
    */
   base = "/proc/";
-  if ((dirst = opendir(base)) == NULL) {
+  if ((procdirst = opendir(base)) == NULL) {
 	/* TODO Is it true that I don't have to pass errno
-	 * explicitly to errExit().
+	 * explicitly to errExit()?
 	 * If the above statement is true, then during dynamic
 	 * linking phase this was taken care of.
 	 */
@@ -50,13 +54,31 @@ main(int args, char **argv)
   }
 
   while (1) {
-	snprintf(pathname, PATHNAME_BUF_SIZE, "%s/%s", base, ); 
-	if ((dirent = readdir(dirst)) == NULL) {
+	if ((dirst = readdir(procdirst)) == NULL) {
 	  if (errno = 0)
 		printf("\n\nEnd of dir strean\n\n");
 	  else
-		errxit("readdir %s",); 
+		errExit("readdir %s", dirst->d_name); 
 	}
+
+	snprintf(proc_dirname, PATHNAME_BUF_SIZE, "%s/%s", base, dirst->d_name);
+
+	if (stat(proc_dirname, &sb) == -1) 
+	  errExit("stat proc_dirname");
+
+	if ((sb.st_mode & S_IFMT) != S_IFREG) /* Check for file type */
+	  continue; /* Continue if not a regular file */
+
+	snprintf(pathname, PATHNAME_BUF_SIZE, "%s/status", proc_dirname); 
+
+	if (stat(pathname, &sb) == -1) 
+	  errExit("stat file pathname");
+
+	if ((sb.st_mode & S_IFMT) != S_IFREG) /* Check for file type */
+	  continue; /* Continue if not a regular file */
+
+	printf("%s\n", pathname);
+	
   }
 
   exit(EXIT_SUCCESS);
