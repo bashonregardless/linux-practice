@@ -1,5 +1,7 @@
 include ../../Makefile.inc
 
+# TODO remove $(INCLUDEFLAGS) and $(INCLUDEDIRS) variable
+# See CFLAGS definition in Makefile.inc
 thr-one.out: thr-one.o
 	$(CC) $(CFLAGS) $(INCLUDEFLAGS) $(INCLUDEDIRS) $(INCLUDEDIRS)/error_functions.o thr-one.o -o $@
 

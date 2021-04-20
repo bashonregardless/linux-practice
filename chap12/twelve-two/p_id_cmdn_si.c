@@ -1,7 +1,7 @@
 /* TODO Make sure your program
  * correctly handles the possibility that a /proc/ PID directory disappears between the
  * time that the program determines that the directory exists and the time that it tries
- * to open the corresponding /proc/ PID /status file.
+ * to open the corresponding /proc/PID/status file.
  */
 #include <fcntl.h>
 #include <unistd.h>
@@ -86,6 +86,10 @@ void readfdata(char *pathname, uid_t uid)
 	  printf("No token\n");
 	  continue; /* Continue if no token found */
 	}
+	/* NOTE you are using re-enterant version of strtok(),
+	 * still you are using same buffer saveptr in all calls 
+	 * to strtok_r(). This looks contradicting.
+	 */
 
 	/* If token is either "Name" or "Uid" */
 	if (strcmp(token, "Pid") == 0) {
@@ -179,8 +183,6 @@ main (int argc, char **argv)
 	  printf("%s @ stat\n", strerror(errno));
 	  continue; /* Continue if stat call fails */
 	}
-
-	//printf("%s\n", pathname);
 
 	if ((sb.st_mode & S_IFMT) != S_IFREG) /* Check for file type */
 	  continue; /* Continue if not a regular file */
