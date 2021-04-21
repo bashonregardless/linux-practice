@@ -17,16 +17,19 @@ struct node {
   int children_count;
   pid_t pid;
   pid_t ppid;
-  char *proc_name;
-  struct node* next;
+  char *name;
+  struct node *next;
 };
 
-void addnode(pid_t);
+struct node root = NULL;
+
+struct node *addnode(pid_t, pid_t, char *);
 
 void readfdata(char *);
 
 void trim(char *);
 
+/* copied code */
 void trim(char * s) {
   char * p = s;
   int l = strlen(p);
@@ -37,11 +40,21 @@ void trim(char * s) {
   memmove(s, p, l + 1);
 }
 
-void addnode(pid_t pid) {
+struct node *addnode(pid_t pid, pid_t ppid, char *name) {
+  //lookupnode(pid);
+
   struct node *pproc_node;
 
   if ((pproc_node = malloc(sizeof(struct node))) == NULL)
 	errExit("malloc addnode");
+  
+  pproc_node->pid = pid;
+  pproc_node->ppid = ppid;
+  pproc_node->name = name;
+
+  pproc_node->next = NULL;
+
+  return pproc_node;
 }
 
 void readfdata(char *pathname)
@@ -79,7 +92,7 @@ void readfdata(char *pathname)
 	  trim(token);
 	  pid = getInt(token, GN_ANY_BASE, "pid");
 	  printf("Pid: string %s or integer %ld\n", token, (long) pid);
-	  addnode(pid);
+	  //addnode(pid, ppid, name);
 	}
 
 	/* If token is PPid */
