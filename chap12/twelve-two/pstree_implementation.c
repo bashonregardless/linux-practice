@@ -7,6 +7,8 @@
 #include <fcntl.h>
 #include <dirent.h>
 #include <sys/stat.h>
+#include <sys/wait.h>
+#include <sys/types.h>
 #include <ctype.h>
 
 #include "tlpi_hdr.h"
@@ -21,7 +23,55 @@ struct node {
   struct node *next;
 };
 
-struct node root = NULL;
+/*
+ * TODO:
+ * Create Process P1
+ * Scan some dirs
+ * Create process P2, a child of P1
+ * Scan some more dirs
+ * Create another process P2, a child of P1
+ * Scan some more dirs
+ * Terminate P2 and the P1. Also Terminate P1 and then P2
+ * Scan remaning dirs
+ * Print tree
+ *
+ *
+ * DATA:
+ * The data used to lookup a node may change between the time 
+ * a lookup is performed on the node and an operation
+ * (accessing a file, inserting it to data structure) is performed
+ * on the node . Data is in the form of directory stream.
+ * The name of directories in this stream can be accessed. To
+ * do this and to call next directory in the stream we make a 
+ * readdir() sys call.
+ *
+ * Directory names coincide with the PIDs of the processes, 
+ * which can be found in file /proc/PID/status.
+ *
+ * Directory names pose a particular problem:
+ * They can be adjusted to any value upto 2^22. Verify on your sys?
+ * making it possible to accomodate very large number of processes.
+ *
+ * There is a possibility that a processes parent (and thus, the
+ * /proc/PID directory disappears during the scan of all
+ * /proc/PID directories.
+ *
+ * Q. Which data structure to use to handle data of such nature?
+ *
+ * Choice of data structures:
+ *  
+ * Operation on the node include:
+ * 	search
+ * 	delete
+ * 	insert
+ * 	update
+ */
+/* lookupnode returns pointer to node if found, otherwise
+ * it returns -1.
+ */
+int lookupnode(pid_t);
+
+//struct node root = NULL;
 
 struct node *addnode(pid_t, pid_t, char *);
 
@@ -29,8 +79,11 @@ void readfdata(char *);
 
 void trim(char *);
 
+int lookupnode(pid_t pid) { }
+
 /* copied code */
-void trim(char * s) {
+void trim(char * s) 
+{
   char * p = s;
   int l = strlen(p);
 
@@ -40,13 +93,12 @@ void trim(char * s) {
   memmove(s, p, l + 1);
 }
 
-struct node *addnode(pid_t pid, pid_t ppid, char *name) {
-  //lookupnode(pid);
-
+struct node *addnode(pid_t pid, pid_t ppid, char *name)
+{
   struct node *pproc_node;
 
   if ((pproc_node = malloc(sizeof(struct node))) == NULL)
-	errExit("malloc addnode");
+	errExit("malloc in addnode()");
   
   pproc_node->pid = pid;
   pproc_node->ppid = ppid;
@@ -121,6 +173,7 @@ void readfdata(char *pathname)
   /* Close file stream */
   if (fclose(fst) == -1)
 	errExit("close");
+  printf("Child Pid: %ld\n", (long) getpid());
 }
 
 int
@@ -138,6 +191,9 @@ main(int args, char **argv)
    */
   struct dirent *dirst;
   struct stat sb;
+  int dircount, *status;
+  pid_t childPid;
+
   /* TODO without declaration and initialization step
    * `
    * int errno;
@@ -165,6 +221,21 @@ main(int args, char **argv)
 	errExit("opendir");
   }
 
+  switch (childPid = fork()) {
+	case -1:
+	  errExit("fork");
+
+	case 0:
+	  printf("Inside child\n");
+	  printf("Child Pid: %ld\n", (long) getpid());
+	  break;
+
+	default:
+	  printf("Inside parent\n");
+	  waitpid(childPid, status, 0);
+  }
+  
+  dircount = 0;
   errno = 0;
   while ((dirst = readdir(procdirst)) != NULL) { /* Read from directory stream */
 	if((strcmp(dirst->d_name, ".") == 0) || (strcmp(dirst->d_name, "..") == 0))
@@ -173,7 +244,7 @@ main(int args, char **argv)
 	/* Form /proc/PID directory pathname. Concatenate using snprintf() */
 	snprintf(proc_dirname, PATHNAME_BUF_SIZE, "%s%s", base, dirst->d_name);
 
-	if (stat(proc_dirname, &sb) == -1) {
+	if (stat(proc_dirname, &sb) == -1) { /* NOTE stat syscall also sets errno */
 	  printf("stat proc_dirname: %s \tError: %s\n", proc_dirname, strerror(errno));
 	  continue;
 	}
@@ -194,20 +265,32 @@ main(int args, char **argv)
 
 	printf("%s\n", pathname);
 	
-	errno = 0; /* Reset errno because
-	NOTE errno could also be set by api such as stat() */
-	/* TODO
-	 * NOTE keeping `errno = 0` initalization outside while loop
-	 * sets errno and takes path of errExit() in
-	 * readdir() termination code below.
-	 * This is probably because, some funtion below in this loop
-	 * sets errno to non-zero value.
-	 */
-	
+	if (dircount == 20) {
+	  printf("Child Pid: %ld\n", (long) childPid);
+	}
+
 	/* Do something with file */
 
 	readfdata(pathname);
 	printf("\n");
+
+	dircount++;
+
+	/* TODO Is it really required to set errno back to zero after having
+	 * moved readdir() in while conditional?
+	 */
+	//errno = 0; 
+	/* Reset errno because
+	NOTE errno could also be set by api such as stat() */
+	/* TODO DONE
+	 * * NOTE keeping `errno = 0` initalization outside while loop
+	 * sets errno and takes path of errExit() in
+	 * readdir() termination code below.
+	 * This is probably because, some funtion (for e.g, stat()) below 
+	 * in this loop sets errno to non-zero value.
+	 * DONE: Moving readdir() sys call in while conditional and readdir()
+	 * termination code outside while loop solves this problem.
+	 */
   } 
 
   /* Hanlde termination of readdir() */

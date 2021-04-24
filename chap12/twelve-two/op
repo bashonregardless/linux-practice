@@ -1,0 +1,1457 @@
+Inside child
+Child Pid: 20955
+stat pathname: /proc/fs/status 	Error: No such file or directory
+stat pathname: /proc/bus/status 	Error: No such file or directory
+stat pathname: /proc/irq/status 	Error: No such file or directory
+stat pathname: /proc/net/status 	Error: No such file or directory
+stat pathname: /proc/sys/status 	Error: No such file or directory
+stat pathname: /proc/tty/status 	Error: No such file or directory
+stat pathname: /proc/acpi/status 	Error: No such file or directory
+stat pathname: /proc/scsi/status 	Error: No such file or directory
+stat pathname: /proc/asound/status 	Error: No such file or directory
+stat pathname: /proc/driver/status 	Error: No such file or directory
+stat pathname: /proc/sysvipc/status 	Error: No such file or directory
+/proc/self/status
+Name: pstree.out
+Pid: string 20955 or integer 20955
+PPid: string 20954 or integer 20954
+Child Pid: 20955
+
+/proc/thread-self/status
+Name: pstree.out
+Pid: string 20955 or integer 20955
+PPid: string 20954 or integer 20954
+Child Pid: 20955
+
+/proc/1/status
+Name: systemd
+Pid: string 1 or integer 1
+PPid: string 0 or integer 0
+Child Pid: 20955
+
+/proc/2/status
+Name: kthreadd
+Pid: string 2 or integer 2
+PPid: string 0 or integer 0
+Child Pid: 20955
+
+/proc/4/status
+Name: kworker/0
+Pid: string 4 or integer 4
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/6/status
+Name: mm_percpu_wq
+Pid: string 6 or integer 6
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/7/status
+Name: ksoftirqd/0
+Pid: string 7 or integer 7
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/8/status
+Name: rcu_sched
+Pid: string 8 or integer 8
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/9/status
+Name: rcu_bh
+Pid: string 9 or integer 9
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/10/status
+Name: migration/0
+Pid: string 10 or integer 10
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/11/status
+Name: watchdog/0
+Pid: string 11 or integer 11
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/12/status
+Name: cpuhp/0
+Pid: string 12 or integer 12
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/13/status
+Name: cpuhp/1
+Pid: string 13 or integer 13
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/14/status
+Name: watchdog/1
+Pid: string 14 or integer 14
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/15/status
+Name: migration/1
+Pid: string 15 or integer 15
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/16/status
+Name: ksoftirqd/1
+Pid: string 16 or integer 16
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/18/status
+Name: kworker/1
+Pid: string 18 or integer 18
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/19/status
+Name: cpuhp/2
+Pid: string 19 or integer 19
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/20/status
+Name: watchdog/2
+Pid: string 20 or integer 20
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/21/status
+Name: migration/2
+Pid: string 21 or integer 21
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/22/status
+Child Pid: 0
+Name: ksoftirqd/2
+Pid: string 22 or integer 22
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/24/status
+Name: kworker/2
+Pid: string 24 or integer 24
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/25/status
+Name: cpuhp/3
+Pid: string 25 or integer 25
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/26/status
+Name: watchdog/3
+Pid: string 26 or integer 26
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/27/status
+Name: migration/3
+Pid: string 27 or integer 27
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/28/status
+Name: ksoftirqd/3
+Pid: string 28 or integer 28
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/30/status
+Name: kworker/3
+Pid: string 30 or integer 30
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/31/status
+Name: kdevtmpfs
+Pid: string 31 or integer 31
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/32/status
+Name: netns
+Pid: string 32 or integer 32
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/33/status
+Name: rcu_tasks_kthre
+Pid: string 33 or integer 33
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/34/status
+Name: kauditd
+Pid: string 34 or integer 34
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/38/status
+Name: khungtaskd
+Pid: string 38 or integer 38
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/39/status
+Name: oom_reaper
+Pid: string 39 or integer 39
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/40/status
+Name: writeback
+Pid: string 40 or integer 40
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/41/status
+Name: kcompactd0
+Pid: string 41 or integer 41
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/42/status
+Name: ksmd
+Pid: string 42 or integer 42
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/43/status
+Name: khugepaged
+Pid: string 43 or integer 43
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/44/status
+Name: crypto
+Pid: string 44 or integer 44
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/45/status
+Name: kintegrityd
+Pid: string 45 or integer 45
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/46/status
+Name: kblockd
+Pid: string 46 or integer 46
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/48/status
+Name: ata_sff
+Pid: string 48 or integer 48
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/49/status
+Name: md
+Pid: string 49 or integer 49
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/50/status
+Name: edac-poller
+Pid: string 50 or integer 50
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/51/status
+Name: devfreq_wq
+Pid: string 51 or integer 51
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/52/status
+Name: watchdogd
+Pid: string 52 or integer 52
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/55/status
+Name: kswapd0
+Pid: string 55 or integer 55
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/56/status
+Name: kworker/u9
+Pid: string 56 or integer 56
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/57/status
+Name: ecryptfs-kthrea
+Pid: string 57 or integer 57
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/99/status
+Name: kthrotld
+Pid: string 99 or integer 99
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/100/status
+Name: acpi_thermal_pm
+Pid: string 100 or integer 100
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/105/status
+Name: ipv6_addrconf
+Pid: string 105 or integer 105
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/114/status
+Name: kstrp
+Pid: string 114 or integer 114
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/135/status
+Name: charger_manager
+Pid: string 135 or integer 135
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/184/status
+Name: scsi_eh_0
+Pid: string 184 or integer 184
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/185/status
+Name: scsi_tmf_0
+Pid: string 185 or integer 185
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/186/status
+Name: scsi_eh_1
+Pid: string 186 or integer 186
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/187/status
+Name: scsi_tmf_1
+Pid: string 187 or integer 187
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/194/status
+Name: ttm_swap
+Pid: string 194 or integer 194
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/195/status
+Name: i915/signal
+Pid: string 195 or integer 195
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/196/status
+Name: i915/signal
+Pid: string 196 or integer 196
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/197/status
+Name: i915/signal
+Pid: string 197 or integer 197
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/198/status
+Name: i915/signal
+Pid: string 198 or integer 198
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/220/status
+Name: kworker/3
+Pid: string 220 or integer 220
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/245/status
+Name: jbd2/sda1-8
+Pid: string 245 or integer 245
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/246/status
+Name: ext4-rsv-conver
+Pid: string 246 or integer 246
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/281/status
+Name: systemd-journal
+Pid: string 281 or integer 281
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/286/status
+Name: kworker/1
+Pid: string 286 or integer 286
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/290/status
+Name: kworker/2
+Pid: string 290 or integer 290
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/311/status
+Name: kworker/0
+Pid: string 311 or integer 311
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/323/status
+Name: systemd-udevd
+Pid: string 323 or integer 323
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/325/status
+Name: loop0
+Pid: string 325 or integer 325
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/328/status
+Name: loop1
+Pid: string 328 or integer 328
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/361/status
+Name: loop3
+Pid: string 361 or integer 361
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/386/status
+Name: loop4
+Pid: string 386 or integer 386
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/395/status
+Name: loop5
+Pid: string 395 or integer 395
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/397/status
+Name: loop6
+Pid: string 397 or integer 397
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/399/status
+Name: cfg80211
+Pid: string 399 or integer 399
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/407/status
+Name: loop7
+Pid: string 407 or integer 407
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/408/status
+Name: loop8
+Pid: string 408 or integer 408
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/667/status
+Name: jbd2/sda2-8
+Pid: string 667 or integer 667
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/668/status
+Name: ext4-rsv-conver
+Pid: string 668 or integer 668
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/777/status
+Name: systemd-timesyn
+Pid: string 777 or integer 777
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/891/status
+Name: accounts-daemon
+Pid: string 891 or integer 891
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/893/status
+Name: avahi-daemon
+Pid: string 893 or integer 893
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/895/status
+Name: systemd-logind
+Pid: string 895 or integer 895
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/905/status
+Name: bluetoothd
+Pid: string 905 or integer 905
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/907/status
+Name: cgmanager
+Pid: string 907 or integer 907
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/914/status
+Name: rsyslogd
+Pid: string 914 or integer 914
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/916/status
+Name: thermald
+Pid: string 916 or integer 916
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/924/status
+Name: acpid
+Pid: string 924 or integer 924
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/928/status
+Name: ModemManager
+Pid: string 928 or integer 928
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/931/status
+Name: cron
+Pid: string 931 or integer 931
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/934/status
+Name: atd
+Pid: string 934 or integer 934
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/936/status
+Name: snapd
+Pid: string 936 or integer 936
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/937/status
+Name: dbus-daemon
+Pid: string 937 or integer 937
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/965/status
+Name: avahi-daemon
+Pid: string 965 or integer 965
+PPid: string 893 or integer 893
+Child Pid: 20955
+
+/proc/993/status
+Name: NetworkManager
+Pid: string 993 or integer 993
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/1062/status
+Name: lightdm
+Pid: string 1062 or integer 1062
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/1073/status
+Name: irqbalance
+Pid: string 1073 or integer 1073
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/1095/status
+Name: Xorg
+Pid: string 1095 or integer 1095
+PPid: string 1062 or integer 1062
+Child Pid: 20955
+
+/proc/1096/status
+Name: polkitd
+Pid: string 1096 or integer 1096
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/1119/status
+Name: libvirtd
+Pid: string 1119 or integer 1119
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/1120/status
+Name: unattended-upgr
+Pid: string 1120 or integer 1120
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/1132/status
+Name: mysqld
+Pid: string 1132 or integer 1132
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/1181/status
+Name: wpa_supplicant
+Pid: string 1181 or integer 1181
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/1355/status
+Name: whoopsie
+Pid: string 1355 or integer 1355
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/1364/status
+Name: agetty
+Pid: string 1364 or integer 1364
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/1403/status
+Name: rtkit-daemon
+Pid: string 1403 or integer 1403
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/1453/status
+Name: krfcommd
+Pid: string 1453 or integer 1453
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/1520/status
+Name: upowerd
+Pid: string 1520 or integer 1520
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/1566/status
+Name: master
+Pid: string 1566 or integer 1566
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/1584/status
+Name: colord
+Pid: string 1584 or integer 1584
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/1792/status
+Name: dnsmasq
+Pid: string 1792 or integer 1792
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/1793/status
+Name: dnsmasq
+Pid: string 1793 or integer 1793
+PPid: string 1792 or integer 1792
+Child Pid: 20955
+
+/proc/1811/status
+Name: lightdm
+Pid: string 1811 or integer 1811
+PPid: string 1062 or integer 1062
+Child Pid: 20955
+
+/proc/1823/status
+Name: systemd
+Pid: string 1823 or integer 1823
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/1824/status
+Name: (sd-pam)
+Pid: string 1824 or integer 1824
+PPid: string 1823 or integer 1823
+Child Pid: 20955
+
+/proc/1829/status
+Name: gnome-keyring-d
+Pid: string 1829 or integer 1829
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/1831/status
+Name: upstart
+Pid: string 1831 or integer 1831
+PPid: string 1811 or integer 1811
+Child Pid: 20955
+
+/proc/1910/status
+Name: upstart-udev-br
+Pid: string 1910 or integer 1910
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/1921/status
+Name: dbus-daemon
+Pid: string 1921 or integer 1921
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/1933/status
+Name: window-stack-br
+Pid: string 1933 or integer 1933
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/1960/status
+Name: ibus-daemon
+Pid: string 1960 or integer 1960
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/1968/status
+Name: gvfsd
+Pid: string 1968 or integer 1968
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/1973/status
+Name: gvfsd-fuse
+Pid: string 1973 or integer 1973
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/1982/status
+Name: ibus-dconf
+Pid: string 1982 or integer 1982
+PPid: string 1960 or integer 1960
+Child Pid: 20955
+
+/proc/1983/status
+Name: ibus-ui-gtk3
+Pid: string 1983 or integer 1983
+PPid: string 1960 or integer 1960
+Child Pid: 20955
+
+/proc/1985/status
+Name: ibus-x11
+Pid: string 1985 or integer 1985
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2003/status
+Name: upstart-dbus-br
+Pid: string 2003 or integer 2003
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2004/status
+Name: upstart-dbus-br
+Pid: string 2004 or integer 2004
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2008/status
+Name: upstart-file-br
+Pid: string 2008 or integer 2008
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2016/status
+Name: at-spi-bus-laun
+Pid: string 2016 or integer 2016
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2025/status
+Name: dbus-daemon
+Pid: string 2025 or integer 2025
+PPid: string 2016 or integer 2016
+Child Pid: 20955
+
+/proc/2027/status
+Name: at-spi2-registr
+Pid: string 2027 or integer 2027
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2058/status
+Name: bamfdaemon
+Pid: string 2058 or integer 2058
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2061/status
+Name: ibus-engine-sim
+Pid: string 2061 or integer 2061
+PPid: string 1960 or integer 1960
+Child Pid: 20955
+
+/proc/2079/status
+Name: dnsmasq
+Pid: string 2079 or integer 2079
+PPid: string 993 or integer 993
+Child Pid: 20955
+
+/proc/2157/status
+Name: qmgr
+Pid: string 2157 or integer 2157
+PPid: string 1566 or integer 1566
+Child Pid: 20955
+
+/proc/2167/status
+Name: gpg-agent
+Pid: string 2167 or integer 2167
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2186/status
+Name: hud-service
+Pid: string 2186 or integer 2186
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2188/status
+Name: unity-settings-
+Pid: string 2188 or integer 2188
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2196/status
+Name: gnome-session-b
+Pid: string 2196 or integer 2196
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2207/status
+Name: unity-panel-ser
+Pid: string 2207 or integer 2207
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2229/status
+Name: indicator-messa
+Pid: string 2229 or integer 2229
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2230/status
+Name: indicator-bluet
+Pid: string 2230 or integer 2230
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2231/status
+Name: indicator-power
+Pid: string 2231 or integer 2231
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2240/status
+Name: indicator-datet
+Pid: string 2240 or integer 2240
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2241/status
+Name: indicator-keybo
+Pid: string 2241 or integer 2241
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2242/status
+Name: indicator-sound
+Pid: string 2242 or integer 2242
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2245/status
+Name: indicator-print
+Pid: string 2245 or integer 2245
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2250/status
+Name: indicator-sessi
+Pid: string 2250 or integer 2250
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2268/status
+Name: pulseaudio
+Pid: string 2268 or integer 2268
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2285/status
+Name: indicator-appli
+Pid: string 2285 or integer 2285
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2305/status
+Name: evolution-sourc
+Pid: string 2305 or integer 2305
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2310/status
+Name: dconf-service
+Pid: string 2310 or integer 2310
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2313/status
+Name: syndaemon
+Pid: string 2313 or integer 2313
+PPid: string 2188 or integer 2188
+Child Pid: 20955
+
+/proc/2345/status
+Name: evolution-calen
+Pid: string 2345 or integer 2345
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2353/status
+Name: compiz
+Pid: string 2353 or integer 2353
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2356/status
+Name: polkit-gnome-au
+Pid: string 2356 or integer 2356
+PPid: string 2196 or integer 2196
+Child Pid: 20955
+
+/proc/2359/status
+Name: nautilus
+Pid: string 2359 or integer 2359
+PPid: string 2196 or integer 2196
+Child Pid: 20955
+
+/proc/2365/status
+Name: nm-applet
+Pid: string 2365 or integer 2365
+PPid: string 2196 or integer 2196
+Child Pid: 20955
+
+/proc/2366/status
+Name: gnome-software
+Pid: string 2366 or integer 2366
+PPid: string 2196 or integer 2196
+Child Pid: 20955
+
+/proc/2370/status
+Name: unity-fallback-
+Pid: string 2370 or integer 2370
+PPid: string 2196 or integer 2196
+Child Pid: 20955
+
+/proc/2385/status
+Name: gvfs-udisks2-vo
+Pid: string 2385 or integer 2385
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2391/status
+Name: udisksd
+Pid: string 2391 or integer 2391
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/2402/status
+Name: gvfs-goa-volume
+Pid: string 2402 or integer 2402
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2407/status
+Name: gvfs-gphoto2-vo
+Pid: string 2407 or integer 2407
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2422/status
+Name: gvfs-mtp-volume
+Pid: string 2422 or integer 2422
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2427/status
+Name: gvfs-afc-volume
+Pid: string 2427 or integer 2427
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2432/status
+Name: fwupd
+Pid: string 2432 or integer 2432
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/2446/status
+Name: evolution-calen
+Pid: string 2446 or integer 2446
+PPid: string 2345 or integer 2345
+Child Pid: 20955
+
+/proc/2457/status
+Name: evolution-addre
+Pid: string 2457 or integer 2457
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2459/status
+Name: evolution-calen
+Pid: string 2459 or integer 2459
+PPid: string 2345 or integer 2345
+Child Pid: 20955
+
+/proc/2469/status
+Name: evolution-addre
+Pid: string 2469 or integer 2469
+PPid: string 2457 or integer 2457
+Child Pid: 20955
+
+/proc/2488/status
+Name: gvfsd-trash
+Pid: string 2488 or integer 2488
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2530/status
+Name: gvfsd-metadata
+Pid: string 2530 or integer 2530
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2547/status
+Name: zeitgeist-datah
+Pid: string 2547 or integer 2547
+PPid: string 2196 or integer 2196
+Child Pid: 20955
+
+/proc/2554/status
+Name: sh
+Pid: string 2554 or integer 2554
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2558/status
+Name: zeitgeist-daemo
+Pid: string 2558 or integer 2558
+PPid: string 2554 or integer 2554
+Child Pid: 20955
+
+/proc/2565/status
+Name: zeitgeist-fts
+Pid: string 2565 or integer 2565
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2593/status
+Name: unity-scope-hom
+Pid: string 2593 or integer 2593
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2602/status
+Name: unity-scope-loa
+Pid: string 2602 or integer 2602
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2604/status
+Name: unity-files-dae
+Pid: string 2604 or integer 2604
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2682/status
+Name: update-notifier
+Pid: string 2682 or integer 2682
+PPid: string 2196 or integer 2196
+Child Pid: 20955
+
+/proc/2746/status
+Name: notify-osd
+Pid: string 2746 or integer 2746
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/2757/status
+Name: deja-dup-monito
+Pid: string 2757 or integer 2757
+PPid: string 2196 or integer 2196
+Child Pid: 20955
+
+/proc/3516/status
+Name: gnome-terminal-
+Pid: string 3516 or integer 3516
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/3523/status
+Name: bash
+Pid: string 3523 or integer 3523
+PPid: string 3516 or integer 3516
+Child Pid: 20955
+
+/proc/3606/status
+Name: tmux
+Pid: string 3606 or integer 3606
+PPid: string 3523 or integer 3523
+Child Pid: 20955
+
+/proc/3609/status
+Name: tmux
+Pid: string 3609 or integer 3609
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/3610/status
+Name: bash
+Pid: string 3610 or integer 3610
+PPid: string 3609 or integer 3609
+Child Pid: 20955
+
+/proc/3790/status
+Name: vim
+Pid: string 3790 or integer 3790
+PPid: string 3610 or integer 3610
+Child Pid: 20955
+
+/proc/3879/status
+Name: evince
+Pid: string 3879 or integer 3879
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/3886/status
+Name: evinced
+Pid: string 3886 or integer 3886
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/4401/status
+Name: chromium-browse
+Pid: string 4401 or integer 4401
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/4410/status
+Name: chromium-browse
+Pid: string 4410 or integer 4410
+PPid: string 4401 or integer 4401
+Child Pid: 20955
+
+/proc/4411/status
+Name: chromium-browse
+Pid: string 4411 or integer 4411
+PPid: string 4401 or integer 4401
+Child Pid: 20955
+
+/proc/4413/status
+Name: chromium-browse
+Pid: string 4413 or integer 4413
+PPid: string 4411 or integer 4411
+Child Pid: 20955
+
+/proc/4435/status
+Name: chromium-browse
+Pid: string 4435 or integer 4435
+PPid: string 4410 or integer 4410
+Child Pid: 20955
+
+/proc/4437/status
+Name: chromium-browse
+Pid: string 4437 or integer 4437
+PPid: string 4401 or integer 4401
+Child Pid: 20955
+
+/proc/4440/status
+Name: chromium-browse
+Pid: string 4440 or integer 4440
+PPid: string 4435 or integer 4435
+Child Pid: 20955
+
+/proc/4509/status
+Name: chromium-browse
+Pid: string 4509 or integer 4509
+PPid: string 4413 or integer 4413
+Child Pid: 20955
+
+/proc/4515/status
+Name: chromium-browse
+Pid: string 4515 or integer 4515
+PPid: string 4413 or integer 4413
+Child Pid: 20955
+
+/proc/5305/status
+Name: chromium-browse
+Pid: string 5305 or integer 5305
+PPid: string 4413 or integer 4413
+Child Pid: 20955
+
+/proc/5897/status
+Name: chromium-browse
+Pid: string 5897 or integer 5897
+PPid: string 4401 or integer 4401
+Child Pid: 20955
+
+/proc/6450/status
+Name: bash
+Pid: string 6450 or integer 6450
+PPid: string 3609 or integer 3609
+Child Pid: 20955
+
+/proc/11697/status
+Name: chromium-browse
+Pid: string 11697 or integer 11697
+PPid: string 4413 or integer 4413
+Child Pid: 20955
+
+/proc/14884/status
+Name: loop9
+Pid: string 14884 or integer 14884
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/15414/status
+Name: chromium-browse
+Pid: string 15414 or integer 15414
+PPid: string 4413 or integer 4413
+Child Pid: 20955
+
+/proc/16173/status
+Name: chromium-browse
+Pid: string 16173 or integer 16173
+PPid: string 4413 or integer 4413
+Child Pid: 20955
+
+/proc/16182/status
+Name: chromium-browse
+Pid: string 16182 or integer 16182
+PPid: string 4413 or integer 4413
+Child Pid: 20955
+
+/proc/16206/status
+Name: chromium-browse
+Pid: string 16206 or integer 16206
+PPid: string 4413 or integer 4413
+Child Pid: 20955
+
+/proc/16894/status
+Name: evince
+Pid: string 16894 or integer 16894
+PPid: string 1831 or integer 1831
+Child Pid: 20955
+
+/proc/19332/status
+Name: kworker/2
+Pid: string 19332 or integer 19332
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/19456/status
+Name: kworker/u8
+Pid: string 19456 or integer 19456
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/19479/status
+Name: kworker/1
+Pid: string 19479 or integer 19479
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/19482/status
+Name: kworker/u9
+Pid: string 19482 or integer 19482
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/19761/status
+Name: irq/127-mei_me
+Pid: string 19761 or integer 19761
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/19765/status
+Name: pickup
+Pid: string 19765 or integer 19765
+PPid: string 1566 or integer 1566
+Child Pid: 20955
+
+/proc/19838/status
+Name: dhclient
+Pid: string 19838 or integer 19838
+PPid: string 993 or integer 993
+Child Pid: 20955
+
+/proc/19994/status
+Name: chromium-browse
+Pid: string 19994 or integer 19994
+PPid: string 4413 or integer 4413
+Child Pid: 20955
+
+/proc/20078/status
+Name: chromium-browse
+Pid: string 20078 or integer 20078
+PPid: string 4413 or integer 4413
+Child Pid: 20955
+
+/proc/20256/status
+Name: cupsd
+Pid: string 20256 or integer 20256
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/20257/status
+Name: cups-browsed
+Pid: string 20257 or integer 20257
+PPid: string 1 or integer 1
+Child Pid: 20955
+
+/proc/20349/status
+Name: kworker/0
+Pid: string 20349 or integer 20349
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/20365/status
+Name: kworker/u8
+Pid: string 20365 or integer 20365
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/20374/status
+Name: kworker/2
+Pid: string 20374 or integer 20374
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/20382/status
+Name: kworker/3
+Pid: string 20382 or integer 20382
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/20436/status
+Name: kworker/0
+Pid: string 20436 or integer 20436
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/20660/status
+Name: kworker/1
+Pid: string 20660 or integer 20660
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/20661/status
+Name: kworker/u8
+Pid: string 20661 or integer 20661
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/20775/status
+Name: chromium-browse
+Pid: string 20775 or integer 20775
+PPid: string 4413 or integer 4413
+Child Pid: 20955
+
+/proc/20823/status
+Name: kworker/3
+Pid: string 20823 or integer 20823
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/20824/status
+Name: kworker/2
+Pid: string 20824 or integer 20824
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/20846/status
+Name: kworker/0
+Pid: string 20846 or integer 20846
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/20890/status
+Name: kworker/3
+Pid: string 20890 or integer 20890
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/20951/status
+Name: kworker/u8
+Pid: string 20951 or integer 20951
+PPid: string 2 or integer 2
+Child Pid: 20955
+
+/proc/20954/status
+Name: pstree.out
+Pid: string 20954 or integer 20954
+PPid: string 6450 or integer 6450
+Child Pid: 20955
+
+/proc/20955/status
+Name: pstree.out
+Pid: string 20955 or integer 20955
+PPid: string 20954 or integer 20954
+Child Pid: 20955
+
+
+
+End of dir strean
+
+Inside parent
+
+
+End of dir strean
+
